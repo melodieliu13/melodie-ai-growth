@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "KOL Signal 导出器",
-  "version": "1.8",
+  "version": "2.6",
   "description": "抓取X(Twitter) KOL主页推文，按月导出为Obsidian风格Markdown",
   "permissions": [],
   "content_scripts": [{

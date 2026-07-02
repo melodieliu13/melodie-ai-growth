@@ -5,11 +5,13 @@
   'use strict';
 
   const APP = 'kol-signal-exporter-v1';
-  const VERSION = '1.8';
+  const VERSION = '2.6';
   const DB_NAME = 'kolSignalExportDb';
   const DB_STORE = 'handles';
   const DIR_KEY = 'kolLibraryDir';
+  const FOLLOWING_QUEUE_KEY = 'kolSignalFollowingQueueV1';
   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const jitterSleep = (min, max) => sleep(min + Math.random() * (max - min));
 
   clearExistingUi();
   boot();
@@ -41,32 +43,41 @@
       <input id="${APP}-month" value="${escapeAttr(defaultMonth)}" style="${inputStyle()}" />
       <button id="${APP}-dir-btn" style="${buttonStyle('#334155')}">① 选择/确认 KOL情报库 文件夹</button>
       <button id="${APP}-run-btn" style="${buttonStyle('#059669')}">② 开始抓取本月推文</button>
+      <div style="border-top:1px solid #e2e8f0;margin-top:2px;padding-top:8px;font-size:11px;color:#64748b;">关注列表分析（先打开 你的handle/following 页面）</div>
+      <button id="${APP}-following-btn" style="${buttonStyle('#7c3aed')}">③ 抓取当前关注列表</button>
+      <button id="${APP}-sample-btn" style="${buttonStyle('#0891b2')}">④ 批量抓取关注者内容样本</button>
       <button id="${APP}-stop-btn" style="${buttonStyle('#dc2626')}">停止</button>
-    `;
-
-    const status = document.createElement('div');
-    status.id = `${APP}-status`;
-    status.style.cssText = `
-      position: fixed; top: 16px; right: 296px; z-index: 2147483647;
-      display: none; width: 320px; max-height: 70vh; overflow: auto;
-      white-space: pre-wrap; background: #111827; color: #f9fafb;
-      padding: 12px 16px; border-radius: 10px; font-size: 12px; line-height: 1.55;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      box-shadow: 0 4px 20px rgba(0,0,0,.28);
+      <div id="${APP}-status" style="
+        display: none; max-height: 40vh; overflow: auto; white-space: pre-wrap;
+        background: #111827; color: #f9fafb; padding: 10px 12px; border-radius: 8px;
+        font-size: 12px; line-height: 1.55;
+      "></div>
     `;
 
     document.body.appendChild(panel);
-    document.body.appendChild(status);
 
     let stopRequested = false;
     document.getElementById(`${APP}-dir-btn`).onclick = handleChooseDir;
-    document.getElementById(`${APP}-stop-btn`).onclick = () => { stopRequested = true; setStatus('已请求停止，等待当前滚动结束…'); };
+    document.getElementById(`${APP}-stop-btn`).onclick = () => {
+      stopRequested = true;
+      clearFollowingQueue();
+      setStatus('已请求停止，等待当前操作结束…');
+    };
     document.getElementById(`${APP}-run-btn`).onclick = () => {
       stopRequested = false;
       handleRun(() => stopRequested);
     };
+    document.getElementById(`${APP}-following-btn`).onclick = () => {
+      stopRequested = false;
+      handleExtractFollowing(() => stopRequested);
+    };
+    document.getElementById(`${APP}-sample-btn`).onclick = () => {
+      stopRequested = false;
+      handleStartBatchSample();
+    };
 
     console.log(`[KOL Signal导出器] v${VERSION} ready`, location.href);
+    setTimeout(resumeFollowingQueueIfNeeded, 900);
   }
 
   function clearExistingUi() {
@@ -194,6 +205,12 @@
     return match ? match[1] : '0';
   }
 
+  function escapeMarkdownDollar(text) {
+    // 币种代号常见写法如$BTC/$ETH——Obsidian把孤立的$当LaTeX公式定界符，
+    // 两个不相关的$配对后中间一大段推文会被当公式硬解析、渲染成警告色。转义掉避免误触发
+    return text.replace(/\$/g, '\\$');
+  }
+
   function extractQuote(article, mainTimeEl, mainTextEl) {
     const allTimes = Array.from(article.querySelectorAll('time[datetime]'));
     const quoteTimeEl = allTimes.find(t => t !== mainTimeEl);
@@ -204,7 +221,7 @@
 
     const names = Array.from(article.querySelectorAll('[data-testid="User-Name"]'));
     const quoteNameEl = names.length > 1 ? names[names.length - 1] : null;
-    const author = (quoteNameEl?.innerText || quoteNameEl?.textContent || '').replace(/\s+/g, ' ').trim();
+    const author = escapeMarkdownDollar((quoteNameEl?.innerText || quoteNameEl?.textContent || '').replace(/\s+/g, ' ').trim());
 
     // 引用卡片自己的图/视频封面（跟主图分开抓，避免混在一起分不清是谁发的）
     const quoteScope = quoteTimeEl.closest('div[role="link"]') || article;
@@ -212,7 +229,7 @@
 
     return {
       datetime: quoteTimeEl.getAttribute('datetime'),
-      text: (quoteTextEl?.innerText || quoteTextEl?.textContent || '').trim(),
+      text: escapeMarkdownDollar((quoteTextEl?.innerText || quoteTextEl?.textContent || '').trim()),
       author,
       images,
     };
@@ -233,7 +250,7 @@
 
   function extractSocialContext(article) {
     const el = article.querySelector('[data-testid="socialContext"]');
-    const text = el ? (el.innerText || el.textContent || '').trim() : '';
+    const text = el ? escapeMarkdownDollar((el.innerText || el.textContent || '').trim()) : '';
     return text || null;
   }
 
@@ -250,7 +267,7 @@
     if (isAd) return null;
 
     const textEl = article.querySelector('[data-testid="tweetText"]');
-    const text = (textEl?.innerText || textEl?.textContent || '').trim();
+    const text = escapeMarkdownDollar((textEl?.innerText || textEl?.textContent || '').trim());
 
     const quote = extractQuote(article, timeEl, textEl);
     // 主体图/视频封面：排除掉已经算进quote.images的（避免引用卡片里的图被重复计入主体）
@@ -259,7 +276,7 @@
 
     const author = (() => {
       const nameEl = article.querySelector('[data-testid="User-Name"]');
-      return nameEl ? (nameEl.innerText || nameEl.textContent || '').replace(/\s+/g, ' ').trim() : '';
+      return nameEl ? escapeMarkdownDollar((nameEl.innerText || nameEl.textContent || '').replace(/\s+/g, ' ').trim()) : '';
     })();
     const context = extractSocialContext(article);
 
@@ -296,10 +313,32 @@
     return links.length;
   }
 
+  // X偶尔会整页报错("出错了。请尝试重新加载。"+一个"重试"按钮)——这是加载/限流问题，
+  // 不是账号真的没内容。批量抓取时必须先识别出这种情况，别把它当成"空账号"计入熔断。
+  function findRetryButton() {
+    return Array.from(document.querySelectorAll('button, div[role="button"]'))
+      .find(el => (el.innerText || el.textContent || '').trim() === '重试'
+        || (el.innerText || el.textContent || '').trim().toLowerCase() === 'retry');
+  }
+
+  function pageHasLoadError() {
+    const bodyText = document.body.innerText || document.body.textContent || '';
+    return bodyText.includes('出错了') && !!findRetryButton();
+  }
+
+  async function tryRecoverFromLoadError() {
+    if (!pageHasLoadError()) return false;
+    const btn = findRetryButton();
+    if (btn) btn.click();
+    await jitterSleep(2500, 4000);
+    return pageHasLoadError(); // 返回true代表重试后仍然报错
+  }
+
   async function scrollAndCollect(monthStart, monthEnd, isStopped, onProgress) {
-    const seen = new Map();
+    const seen = new Map(); // 落在目标月份内的，最终会存档
+    const seenAnyId = new Set(); // 见过的所有推文id，不管在不在目标月份——判断"真的没有新推文在加载了"
+    const seenOldIds = new Set(); // 比目标月份更早的推文id(去重)——判断"已经滚过目标月份了"
     let staleRounds = 0;
-    let outOfRangeStreak = 0;
     const MAX_ROUNDS = 500;
     const MAX_STALE = 8;
     const MAX_OUT_OF_RANGE = 6;
@@ -310,25 +349,28 @@
       const expanded = expandTruncatedTweets();
       if (expanded > 0) await sleep(400);
 
-      const before = seen.size;
+      const beforeAnyCount = seenAnyId.size;
+      const rawArticleCount = document.querySelectorAll('article[data-testid="tweet"]').length;
       for (const tweet of collectVisibleTweets()) {
-        if (seen.has(tweet.id)) continue;
+        if (seenAnyId.has(tweet.id)) continue;
+        seenAnyId.add(tweet.id);
         const d = new Date(tweet.datetime);
-        if (d > monthEnd) continue; // 比目标月份新，还没滚动到目标区间，继续滚
+        if (d > monthEnd) continue; // 比目标月份新(比如账号发得很频繁，还在滚过更近月份的内容)，继续滚
         if (d < monthStart) {
-          outOfRangeStreak += 1;
+          seenOldIds.add(tweet.id);
           continue;
         }
-        outOfRangeStreak = 0;
         seen.set(tweet.id, tweet);
       }
 
-      onProgress(seen.size, round);
+      onProgress(seen.size, round, rawArticleCount);
 
-      if (outOfRangeStreak >= MAX_OUT_OF_RANGE) break;
+      if (seenOldIds.size >= MAX_OUT_OF_RANGE) break; // 已经滚过目标月份，见到足够多更早的推文了
 
-      const gained = seen.size - before;
-      if (gained === 0) {
+      // 关键：这里判断的是"有没有任何新推文加载出来"，不是"有没有新的目标月份推文"——
+      // 账号发得频繁时，可能要滚很多轮全是更新的月份，才能滚到目标月份，不能因为还没找到符合条件的就提前判定"没内容了"
+      const gainedAny = seenAnyId.size - beforeAnyCount;
+      if (gainedAny === 0) {
         staleRounds += 1;
       } else {
         staleRounds = 0;
@@ -492,12 +534,17 @@
 
     setStatus(`开始抓取 @${kolName} ${month} 的推文…\n正在滚动加载…`);
 
-    const tweets = await scrollAndCollect(monthStart, monthEnd, isStopped, (count, round) => {
-      setStatus(`@${kolName} ${month}\n已抓取 ${count} 条推文（滚动第${round + 1}轮）…`);
+    let lastRawCount = 0;
+    const tweets = await scrollAndCollect(monthStart, monthEnd, isStopped, (count, round, rawCount) => {
+      lastRawCount = rawCount;
+      setStatus(`@${kolName} ${month}\n已抓取 ${count} 条推文（滚动第${round + 1}轮，页面当前有${rawCount}条原始推文）…`);
     });
 
     if (tweets.length === 0) {
-      setStatus(`@${kolName} ${month}\n没有抓到新推文——可能这个月份还没内容，或已经全部合并过了。`);
+      const diag = lastRawCount === 0
+        ? '页面上一条推文元素都没找到——可能页面还没加载完就点了②，刷新页面等完全加载出推文后再试。'
+        : `页面上能看到${lastRawCount}条原始推文，但没有一条落在${month}这个月份范围内，或提取失败——可能是月份判断/页面结构的问题，需要我再看一下。`;
+      setStatus(`@${kolName} ${month}\n没有抓到新推文。\n${diag}`);
       return;
     }
 
@@ -510,6 +557,356 @@
         ? '文件夹引用失效了——先点一下上面「①选择/确认 KOL情报库 文件夹」重新选一次同一个文件夹（会自动验证可写），再点②重跑，本次已抓到的推文不会丢。'
         : '已自动重试3次仍失败——可以再点一次「开始抓取本月推文」，本次已抓到的推文不会丢，重跑会跳过已存的部分。';
       setStatus(`写入失败(${err.name || 'Error'})：${err.message}\n${hint}`);
+    }
+  }
+
+  // ---------- 关注列表抓取 ----------
+
+  const RESERVED_PATH_NAMES = ['home', 'explore', 'notifications', 'messages', 'i', 'search', 'settings', 'compose'];
+
+  function findRowScope(el) {
+    return el.closest('[data-testid="cellInnerDiv"]')
+      || el.closest('button')
+      || el.parentElement?.parentElement?.parentElement?.parentElement
+      || el.parentElement
+      || el;
+  }
+
+  function extractFollowingRowFromHandle(handle, scope) {
+    // 名字/简介不查具体子元素的data-testid(那些猜了两次都不对)，
+    // 改成直接读整行的可见文字，按"第一行是名字，中间是简介，最后是关注按钮文字"这个视觉顺序解析，
+    // 这个顺序比任何具体的CSS/testid都更不容易变
+    const lines = (scope.innerText || scope.textContent || '')
+      .split('\n')
+      .map(l => l.trim())
+      .filter(Boolean)
+      .filter(l => !/^(关注|正在关注|关注你|Follow|Following|Follows you|Blocked|已屏蔽)$/.test(l))
+      .filter(l => !new RegExp(`^@${handle}$`, 'i').test(l));
+
+    const name = escapeMarkdownDollar(lines[0] || '');
+    const bio = escapeMarkdownDollar(lines.slice(1).join(' '));
+    return { handle, name, bio };
+  }
+
+  function collectFollowingRows() {
+    const seen = new Set();
+    const rows = [];
+
+    // 策略1：头像容器的data-testid里直接嵌了handle，这个模式在X全站(推文/列表/私信)都很稳定
+    for (const avatarEl of document.querySelectorAll('[data-testid^="UserAvatar-Container-"]')) {
+      const handle = (avatarEl.getAttribute('data-testid') || '').replace('UserAvatar-Container-', '').trim();
+      if (!handle || seen.has(handle)) continue;
+      seen.add(handle);
+      rows.push(extractFollowingRowFromHandle(handle, findRowScope(avatarEl)));
+    }
+
+    // 策略2(兜底)：策略1如果一个都没匹配到，退回去扫个人主页链接的href
+    if (rows.length === 0) {
+      for (const link of document.querySelectorAll('a[href]')) {
+        const href = link.getAttribute('href') || '';
+        const m = href.match(/^\/(\w{1,15})$/);
+        if (!m || RESERVED_PATH_NAMES.includes(m[1].toLowerCase())) continue;
+        const handle = m[1];
+        if (seen.has(handle)) continue;
+        seen.add(handle);
+        rows.push(extractFollowingRowFromHandle(handle, findRowScope(link)));
+      }
+    }
+
+    return rows;
+  }
+
+  async function scrollAndCollectFollowing(isStopped, onProgress) {
+    const seen = new Map();
+    let staleRounds = 0;
+    const MAX_ROUNDS = 2000;
+    const MAX_STALE = 10;
+
+    for (let round = 0; round < MAX_ROUNDS; round++) {
+      if (isStopped()) break;
+
+      const before = seen.size;
+      const rawNameCount = document.querySelectorAll('[data-testid^="UserAvatar-Container-"]').length || document.querySelectorAll('a[href]').length;
+      for (const info of collectFollowingRows()) {
+        if (info.handle && !seen.has(info.handle)) seen.set(info.handle, info);
+      }
+
+      onProgress(seen.size, round, rawNameCount);
+
+      const gained = seen.size - before;
+      staleRounds = gained === 0 ? staleRounds + 1 : 0;
+      if (staleRounds >= MAX_STALE) break;
+
+      window.scrollBy(0, Math.round(window.innerHeight * 0.85));
+      await sleep(700);
+    }
+
+    return Array.from(seen.values());
+  }
+
+  async function handleExtractFollowing(isStopped) {
+    if (!/\/following\/?$/.test(location.pathname)) {
+      setStatus('当前页面不是"关注列表"页——请先打开 x.com/你的handle/following，再点这个按钮。');
+      return;
+    }
+
+    let dir;
+    try {
+      dir = await chooseKolLibraryDir();
+    } catch (err) {
+      setStatus(`未选择文件夹：${err.message}`);
+      return;
+    }
+
+    setStatus('开始抓取关注列表…\n正在滚动加载…');
+    let lastRawNameCount = 0;
+    const list = await scrollAndCollectFollowing(isStopped, (count, round, rawNameCount) => {
+      lastRawNameCount = rawNameCount;
+      setStatus(`已抓取 ${count} 个关注账号（滚动第${round + 1}轮，页面上有${rawNameCount}个可识别元素）…`);
+    });
+
+    if (list.length === 0) {
+      const diag = lastRawNameCount === 0
+        ? '页面上连头像元素/链接都没找到——页面可能还没加载完，刷新页面等列表完全出来后再试。'
+        : `页面上有${lastRawNameCount}个可识别元素，但一个都没提取出handle——需要我再看一下提取逻辑。`;
+      setStatus(`没有抓到任何关注账号。\n${diag}`);
+      return;
+    }
+
+    try {
+      const folder = await withRetry(() => dir.getDirectoryHandle('_关注列表', { create: true }), '打开_关注列表文件夹');
+
+      await withRetry(async () => {
+        const handle = await folder.getFileHandle('关注列表.json', { create: true });
+        const writable = await handle.createWritable();
+        await writable.write(JSON.stringify(list, null, 2));
+        await writable.close();
+      }, '写关注列表.json');
+
+      const mdLines = [
+        '# 关注列表',
+        '',
+        `共 ${list.length} 个账号，抓取于 ${today()}`,
+        '',
+        '| handle | 名称 | 简介 |',
+        '|---|---|---|',
+        ...list.map(u => `| @${u.handle} | ${(u.name || '').replace(/\|/g, ' ')} | ${(u.bio || '').replace(/\|/g, ' ').replace(/\n/g, ' ').slice(0, 150)} |`),
+      ];
+      await withRetry(async () => {
+        const handle = await folder.getFileHandle('关注列表.md', { create: true });
+        const writable = await handle.createWritable();
+        await writable.write(mdLines.join('\n') + '\n');
+        await writable.close();
+      }, '写关注列表.md');
+
+      setStatus(`✅ 完成\n共抓到 ${list.length} 个关注账号\n存到 ${dir.name}/_关注列表/关注列表.json 和 .md\n\n下一步：点④开始批量抓取内容样本`);
+    } catch (err) {
+      setStatus(`写入失败(${err.name || 'Error'})：${err.message}`);
+    }
+  }
+
+  // ---------- 批量抓取关注者内容样本（跨页面导航，队列持久化在localStorage，参照得到导出器的批量模式） ----------
+
+  function loadFollowingQueue() {
+    try {
+      return JSON.parse(localStorage.getItem(FOLLOWING_QUEUE_KEY) || 'null');
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function saveFollowingQueue(queue) {
+    localStorage.setItem(FOLLOWING_QUEUE_KEY, JSON.stringify(queue));
+  }
+
+  function clearFollowingQueue() {
+    localStorage.removeItem(FOLLOWING_QUEUE_KEY);
+  }
+
+  async function sampleProfileTweets(maxTweets) {
+    const seen = new Map();
+    for (let round = 0; round < 4 && seen.size < maxTweets; round++) {
+      const expanded = expandTruncatedTweets();
+      if (expanded > 0) await sleep(300);
+      for (const tweet of collectVisibleTweets()) {
+        if (!seen.has(tweet.id)) seen.set(tweet.id, tweet);
+      }
+      if (seen.size >= maxTweets) break;
+      window.scrollBy(0, Math.round(window.innerHeight * 0.85));
+      await sleep(700);
+    }
+    return Array.from(seen.values()).slice(0, maxTweets);
+  }
+
+  function formatSampleBlock(user, tweets) {
+    const header = [`## @${user.handle}`, `名称：${user.name || '(无)'}`, `简介：${user.bio || '(无)'}`];
+    if (tweets.length === 0) {
+      header.push('（没有抓到可读的推文——可能是空账号/被封禁/加载失败）');
+      return header.join('\n');
+    }
+    const sorted = tweets.slice().sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+    const body = sorted.map(t => {
+      const stamp = formatStamp(t.datetime);
+      const lines = [`- [${stamp}] ${t.text || '(无文字，见配图/引用)'}`];
+      if (t.images && t.images.length) lines.push(`  ${t.images.map(p => `![](${p})`).join(' ')}`);
+      return lines.join('\n');
+    });
+    return [...header, '', ...body].join('\n');
+  }
+
+  async function handleStartBatchSample() {
+    let dir;
+    try {
+      dir = await chooseKolLibraryDir();
+    } catch (err) {
+      setStatus(`未选择文件夹：${err.message}`);
+      return;
+    }
+
+    try {
+      const folder = await withRetry(() => dir.getDirectoryHandle('_关注列表', { create: true }), '打开_关注列表文件夹');
+      const fileHandle = await folder.getFileHandle('关注列表.json', { create: false });
+      const file = await fileHandle.getFile();
+      const list = JSON.parse(await file.text());
+
+      if (!list.length) {
+        setStatus('关注列表是空的——先点③抓取关注列表。');
+        return;
+      }
+
+      // 如果有暂停的队列(比如熔断暂停)，从暂停的位置继续，不重新从0开始——避免白白重跑一遍已完成的部分
+      const existing = loadFollowingQueue();
+      const handles = list.map(u => u.handle);
+      const canResume = existing && existing.handles?.length === handles.length && existing.index < handles.length;
+      const queue = canResume
+        ? { ...existing, active: true, consecutiveEmpty: 0 }
+        : { active: true, index: 0, handles, consecutiveEmpty: 0 };
+      saveFollowingQueue(queue);
+      setStatus(canResume
+        ? `继续批量抓取，从第 ${queue.index + 1}/${queue.handles.length} 个开始…`
+        : `已建立批量抓取队列，共 ${queue.handles.length} 个账号，即将开始跳转…`);
+      await sleep(500);
+      location.href = `https://x.com/${queue.handles[queue.index]}`;
+    } catch (err) {
+      setStatus(`找不到关注列表.json，请先点③抓取关注列表。(${err.message})`);
+    }
+  }
+
+  async function alreadySampled(folder, handle) {
+    try {
+      const fileHandle = await folder.getFileHandle('内容样本.md', { create: false });
+      const file = await fileHandle.getFile();
+      const content = await file.text();
+      return content.includes(`## @${handle}\n`) || content.includes(`## @${handle}\r\n`);
+    } catch (_) {
+      return false;
+    }
+  }
+
+  async function appendSample(folder, block) {
+    let existing = '';
+    try {
+      const fileHandle = await folder.getFileHandle('内容样本.md', { create: false });
+      const file = await fileHandle.getFile();
+      existing = await file.text();
+    } catch (_) {
+      existing = `# 关注者内容样本\n\n更新：${today()}\n`;
+    }
+    const finalContent = `${existing.trim()}\n\n${block}\n`;
+    await withRetry(async () => {
+      const fileHandle = await folder.getFileHandle('内容样本.md', { create: true });
+      const writable = await fileHandle.createWritable();
+      await writable.write(finalContent);
+      await writable.close();
+    }, '写内容样本.md');
+  }
+
+  async function resumeFollowingQueueIfNeeded() {
+    const queue = loadFollowingQueue();
+    if (!queue?.active) return;
+
+    if (queue.index >= queue.handles.length) {
+      clearFollowingQueue();
+      setStatus(`✅ 批量抓取全部完成，共 ${queue.handles.length} 个账号。`);
+      return;
+    }
+
+    const targetHandle = queue.handles[queue.index];
+    const currentHandle = guessHandleFromUrl();
+
+    if (currentHandle.toLowerCase() !== targetHandle.toLowerCase()) {
+      setStatus(`批量抓取中：第 ${queue.index + 1}/${queue.handles.length} 个 @${targetHandle}\n正在跳转…`);
+      location.href = `https://x.com/${targetHandle}`;
+      return;
+    }
+
+    let dir;
+    try {
+      dir = await getStoredDir();
+      if (!dir || await ensureDirPermission(dir, false) !== 'granted') {
+        setStatus('文件夹授权失效了——点一下「①选择/确认 KOL情报库 文件夹」重新授权后，再点④继续批量抓取（队列进度不会丢）。');
+        return;
+      }
+    } catch (err) {
+      setStatus(`读取文件夹失败：${err.message}——点①重新授权后再点④继续。`);
+      return;
+    }
+
+    try {
+      const folder = await withRetry(() => dir.getDirectoryHandle('_关注列表', { create: true }), '打开_关注列表文件夹');
+
+      if (await alreadySampled(folder, targetHandle)) {
+        setStatus(`批量抓取中：第 ${queue.index + 1}/${queue.handles.length} 个 @${targetHandle} 已抓过，跳过`);
+      } else {
+        await jitterSleep(2200, 3800); // 等页面渲染出推文（打乱间隔，避免固定节奏被识别为脚本）
+
+        let loadError = await tryRecoverFromLoadError(); // 先识别X页面级报错，点"重试"后再判断是否恢复
+        const tweets = loadError ? [] : await sampleProfileTweets(8);
+
+        const listFileHandle = await folder.getFileHandle('关注列表.json', { create: false });
+        const listFile = await listFileHandle.getFile();
+        const list = JSON.parse(await listFile.text());
+        const user = list.find(u => u.handle === targetHandle) || { handle: targetHandle, name: '', bio: '' };
+        const block = loadError
+          ? [`## @${user.handle}`, `名称：${user.name || '(无)'}`, `简介：${user.bio || '(无)'}`,
+              '（页面加载报错，重试后仍失败——疑似限流/风控，不代表账号真的没内容，建议之后单独重跑此账号）'].join('\n')
+          : formatSampleBlock(user, tweets);
+        await appendSample(folder, block);
+        setStatus(loadError
+          ? `批量抓取中：第 ${queue.index + 1}/${queue.handles.length} 个 @${targetHandle}\n页面加载报错（疑似限流），已记录待重跑`
+          : `批量抓取中：第 ${queue.index + 1}/${queue.handles.length} 个 @${targetHandle}\n抓到 ${tweets.length} 条样本，已存档`);
+
+        // 熔断：连续好几个账号都抓空/报错，大概率是页面加载或风控出了系统性问题，不是这些账号真的都没内容
+        // ——先暂停报警，而不是傻乎乎地把整个列表都空转完
+        queue.consecutiveEmpty = (loadError || tweets.length === 0) ? (queue.consecutiveEmpty || 0) + 1 : 0;
+        const EMPTY_CIRCUIT_BREAKER = 5;
+        if (queue.consecutiveEmpty >= EMPTY_CIRCUIT_BREAKER) {
+          queue.active = false;
+          saveFollowingQueue(queue);
+          setStatus(`⚠️ 已暂停：连续 ${EMPTY_CIRCUIT_BREAKER} 个账号都抓到0条样本/报错，大概率是被限流了，不是这些账号真的都没内容。\n建议先歇久一点（比如1小时以上）再点④恢复——进度停在第 ${queue.index + 1}/${queue.handles.length} 个（@${targetHandle}），不会丢。`);
+          return;
+        }
+      }
+
+      queue.index += 1;
+      saveFollowingQueue(queue);
+
+      if (queue.index >= queue.handles.length) {
+        clearFollowingQueue();
+        setStatus(`✅ 批量抓取全部完成，共 ${queue.handles.length} 个账号。\n存在 ${dir.name}/_关注列表/内容样本.md`);
+        return;
+      }
+
+      // 每跑15个账号强制歇一次长的（模拟人类浏览节奏，降低被限流概率）
+      if (queue.index % 15 === 0) {
+        setStatus(`已跑${queue.index}个账号，强制休息一下（避免被限流）…`);
+        await jitterSleep(45000, 90000);
+      } else {
+        await jitterSleep(4000, 8000);
+      }
+      location.href = `https://x.com/${queue.handles[queue.index]}`;
+    } catch (err) {
+      setStatus(`批量抓取第${queue.index + 1}个(@${targetHandle})出错(${err.name || 'Error'})：${err.message}\n点④可以重新触发继续（会跳过已经抓过的）。`);
     }
   }
 })();
