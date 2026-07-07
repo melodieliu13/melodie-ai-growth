@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "讯飞听见 转写导出器",
+  "version": "0.6.1",
+  "description": "在讯飞听见转写页面一键导出说话人+原文为 Markdown,支持首页批量导出",
+  "permissions": [],
+  "content_scripts": [{
+    "matches": ["*://www.iflyrec.com/aboutPage*", "*://iflyrec.com/aboutPage*", "*://www.iflyrec.com/home*", "*://iflyrec.com/home*"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }]
+}
