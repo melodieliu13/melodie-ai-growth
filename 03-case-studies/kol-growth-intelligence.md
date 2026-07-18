@@ -2,7 +2,7 @@
 
 ## One-line summary
 
-I replaced manual KOL timeline reading with a working pipeline that archives 197 accounts / 11,109 tweets, exposes the archive to an LLM through MCP tools, and supports a repeatable partnership-intelligence report.
+I replaced manual KOL timeline reading with a working pipeline that archives 197 accounts / 11,100 tweets, exposes the archive to an LLM through MCP tools, and supports a repeatable partnership-intelligence report.
 
 ## 1. The growth problem
 
@@ -25,7 +25,7 @@ That produced a three-layer design: collection, retrieval and decision support.
 
 ### Collection
 
-The Chrome extension archives monthly X/Twitter timelines as Markdown. It was iterated under real operating pressure, including rate limits and interrupted sessions, and reached a full archive of **197 accounts and 11,109 tweets**.
+The Chrome extension archives monthly X/Twitter timelines as Markdown. It was iterated under real operating pressure, including rate limits and interrupted sessions, and reached a full archive of **197 accounts and 11,100 tweets**.
 
 ### Retrieval
 

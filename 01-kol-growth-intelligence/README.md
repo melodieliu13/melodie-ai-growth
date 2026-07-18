@@ -3,7 +3,7 @@
 The flagship system in this portfolio: a real user-growth research workflow that turns KOL timelines into structured, queryable partnership intelligence.
 
 ```text
-197 accounts / 11,109 tweets
+197 accounts / 11,100 tweets
         ↓
 Chrome extension → monthly Markdown archive
         ↓

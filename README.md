@@ -16,13 +16,13 @@ So I built this:
 
 ```mermaid
 flowchart LR
-    A[197 KOL accounts<br/>11,109 tweets] --> B[Chrome extension<br/>saves monthly archives]
+    A[197 KOL accounts<br/>11,100 tweets] --> B[Chrome extension<br/>saves monthly archives]
     B --> C[MCP server<br/>makes the archive searchable]
     C --> D[Monthly report<br/>turns posts into signals]
     D --> E[My decision<br/>who is worth a closer look]
 ```
 
-The Chrome extension saved **11,109 tweets from 197 accounts** as monthly Markdown files. I then wrapped that archive in an MCP server, so I could ask Claude a normal question instead of searching files manually. The final output is a monthly report that helps me see which narratives are moving and which accounts are worth investigating.
+The Chrome extension saved **11,100 tweets from 197 accounts** as monthly Markdown files. I then wrapped that archive in an MCP server, so I could ask Claude a normal question instead of searching files manually. The final output is a monthly report that helps me see which narratives are moving and which accounts are worth investigating.
 
 | Part | What it does | Code |
 |---|---|---|
@@ -92,7 +92,7 @@ Melodie Liu (刘成成) · User Growth · English / 中文<br>
 
 ### 我做用户增长。这些工具，都是手工活撑不住以后，我用 AI 给自己造的。
 
-主作品是一条 KOL 情报流水线：Chrome 插件存下 197 个账号、11,109 条推文；MCP Server 让 Claude 可以直接查询这批资料；最后产出月度情报，帮助我判断哪些叙事在动、哪些账号值得继续研究。
+主作品是一条 KOL 情报流水线：Chrome 插件存下 197 个账号、11,100 条推文；MCP Server 让 Claude 可以直接查询这批资料；最后产出月度情报，帮助我判断哪些叙事在动、哪些账号值得继续研究。
 
 另外两个插件分别解决 678 条会议转写无法批量导出，以及 30–40 门课程无法完整进入个人知识库的问题。
 
