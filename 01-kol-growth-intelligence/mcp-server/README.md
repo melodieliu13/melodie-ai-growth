@@ -23,13 +23,13 @@
   "mcpServers": {
     "kol-signal": {
       "command": "node",
-      "args": ["/Users/melodie2026/Documents/MelodieOS 2/kol-signal-mcp/server.js"]
+      "args": ["/absolute/path/to/01-kol-growth-intelligence/mcp-server/server.js"]
     }
   }
 }
 ```
 
-1. `cd kol-signal-mcp && npm install`（只需一次）
+1. `cd 01-kol-growth-intelligence/mcp-server && npm install`（只需一次）
 2. 重启 Claude Code（在 MelodieOS 目录里启动），首次会提示是否信任这个项目的 MCP server → 允许
 3. 之后直接对 Claude 说"用 search_kol 查一下 star_okx 六月说了啥"即可
 

@@ -1,122 +1,109 @@
-# Growth Intelligence Tools
+# User Growth, Amplified by AI
 
-**I do user growth. These are tools I built when the growth work hit a wall no off-the-shelf tool solved.**
+### Melodie Liu · User Growth Operator
 
-Not demos, not tutorials — every one of these runs in my actual workflow. Each started the same way: a real problem I was already solving by hand, badly.
+I diagnose the real growth bottleneck, design the system around it, and use AI to make research and execution scale.
 
----
+**User growth is my profession. Strategy, BD and AI-native execution are the capabilities I use to produce it.**
 
-## The main line — a KOL growth-intelligence pipeline
+| Proven growth record | AI execution in this repository |
+|---|---|
+| **25M+ USDT** cumulative profit across ~300 affiliate partners at OKX | **197 accounts · 11,109 tweets** structured for KOL intelligence |
+| One KOL case: first trades **26 → 144**; rebates **+65%** | A working **Chrome extension → MCP server → decision report** pipeline |
+| K12 expansion rate **18%** vs. a 13–14% industry benchmark | **678 recordings** made available for structured review |
 
-In crypto growth, the raw material for every partnership decision is *what the KOLs are actually saying*. I was reading it by hand. That doesn't scale past ~10 accounts, and it leaves no archive to reason over later.
-
-So I built the pipeline:
-
-```
-  ┌─────────────────────────┐
-  │  kol-twitter-exporter   │   Chrome extension · 1,200 lines JS
-  │  Scrapes a KOL's whole  │   → 197 accounts, 11,109 tweets
-  │  month off X/Twitter    │   → full June-2026 archive, as Markdown
-  └───────────┬─────────────┘
-              ↓
-  ┌─────────────────────────┐
-  │     kol-signal-mcp      │   MCP server (Node, official SDK)
-  │  Exposes the archive as │   → list_kols() / search_kol()
-  │  tools an LLM can call  │   → ask Claude in plain language,
-  └───────────┬─────────────┘      it does the tool-calling
-              ↓
-  ┌─────────────────────────┐
-  │  Monthly intelligence   │   → who's gaining attention, which
-  │  report (11 sections,   │      narratives are forming, which
-  │  influence-weighted)    │      accounts are worth working with
-  └─────────────────────────┘
-```
-
-**What it replaced:** manually opening tabs and reading. **What it produces:** a queryable archive of 11,109 tweets and a monthly report I actually use to decide who to talk to.
-
-The interesting part isn't the scraping — it's the middle box. Wrapping my own data as **MCP tools** means I stop writing queries and start asking questions; the model figures out which tool to call. That's the difference between *using* AI and *building for* it.
-
-| Tool | What it is | Status |
-|---|---|---|
-| [`kol-twitter-exporter`](./kol-twitter-exporter) | Chrome extension · scrapes X/Twitter KOL timelines → monthly Markdown | v3.4 |
-| [`kol-signal-mcp`](./kol-signal-mcp) | MCP server · makes the archive queryable by Claude ([docs](./kol-signal-mcp/README.md)) | working, smoke-tested |
+> These are two separate evidence layers. My career record proves the growth outcomes I have owned. This repository proves how I now use AI to scale the work behind growth decisions. I do not attribute the business results above to these tools.
 
 ---
 
-## Same pattern, different problems
+## Flagship case · KOL growth intelligence
 
-Both of these exist because I hit a wall in my own work and no tool solved it.
+### The growth problem
 
-| Tool | The wall | What I built |
+KOL partnership decisions depend on knowing what creators are actually saying, which narratives are gaining momentum, and which accounts are worth engaging. Reading timelines by hand stopped working beyond roughly ten accounts and left no reusable evidence trail.
+
+### The system I built
+
+```mermaid
+flowchart LR
+    A[197 KOL accounts<br/>11,109 tweets] --> B[Chrome extension<br/>monthly Markdown archive]
+    B --> C[MCP server<br/>list_kols + search_kol]
+    C --> D[AI-assisted synthesis<br/>influence-weighted report]
+    D --> E[Human decision<br/>who and what to investigate]
+```
+
+| Layer | What it does | Evidence |
 |---|---|---|
-| [`iflyrec-transcript-exporter`](./iflyrec-transcript-exporter) | Meeting recordings were transcribed but locked in a web UI — no bulk export, and I had 678 of them to review. | Reverse-engineered the site's real POST endpoint, request body and pagination cursor. One-click single export + full-history bulk export. `v0.6.1 · 506 lines` |
-| [`dedao-clippings-exporter`](./dedao-clippings-exporter) | A course platform with no export. I needed whole courses in my notes, and the generic web clipper couldn't do batch. | DOM → Markdown, whole-course batch, written straight to disk via the File System Access API. `v1.85 · 3,567 lines` — the hard part was silent failures, see the [engineering case study](./dedao-clippings-exporter/ENGINEERING_CASE_STUDY.md) |
+| Collect | Archives monthly X/Twitter timelines as structured Markdown | [`twitter-exporter`](./01-kol-growth-intelligence/twitter-exporter) · v3.4 |
+| Retrieve | Lets an LLM query the archive through `list_kols` and `search_kol` | [`mcp-server`](./01-kol-growth-intelligence/mcp-server) · working, smoke-tested |
+| Decide | Turns scattered posts into a repeatable intelligence report | [Case study](./03-case-studies/kol-growth-intelligence.md) |
+
+**What changed:** manual tab-reading became a queryable archive and a repeatable decision workflow. The output is partnership intelligence—not revenue attribution.
+
+---
+
+## What this demonstrates
+
+| Capability | Proof in the work |
+|---|---|
+| **Growth problem framing** | Started from a real partnership bottleneck, not from a technology demo |
+| **Build for AI** | Packaged a private information archive as callable MCP tools instead of relying on manual search |
+| **Data → decision design** | Defined the report structure, source weighting, comparison logic and acceptance criteria |
+| **AI orchestration** | Directed AI to implement, debug and iterate while retaining human ownership of architecture and judgment |
+| **QA under real conditions** | Iterated through rate limits, pagination, silent extraction failures and interrupted sessions |
+| **Pattern reuse** | Reused a proven browser-to-filesystem architecture across three real workflows |
+
+My advantage is not typing code faster. It is knowing **which growth problem is worth systematizing, what evidence the system must preserve, and when its output is good enough to act on**.
+
+---
+
+## Supporting work · workflow automation
+
+| Project | Real operating constraint | What I built |
+|---|---|---|
+| [Transcript exporter](./02-workflow-automation/transcript-exporter) | 678 meeting transcripts were locked in a web interface with no bulk export | Reverse-engineered the POST endpoint, request body and pagination cursor; added single and full-history export |
+| [Course clippings exporter](./02-workflow-automation/course-clippings-exporter) | Whole courses could not be exported into a usable knowledge base | Built DOM → Markdown batch export with persistent folder access; iterated to v1.85 across real content failures |
+
+These are supporting proof of execution. The flagship is the KOL intelligence system because it is the project most directly connected to user-growth work.
+
+---
+
+## Human–AI division of work
+
+**I own:** problem definition · growth logic · architecture · task decomposition · acceptance criteria · QA · business judgment<br>
+**AI handles:** implementation drafts · debugging assistance · repetitive transformation · documentation support<br>
+**The tools handle:** collection · storage · retrieval
+
+That division is intentional: AI compresses implementation; it does not replace accountability for the decision.
 
 ---
 
 ## Honest scope
 
-Read this before judging the code:
-
-- **These are built for my workflow, not packaged as products.** `kol-signal-mcp` reads a Markdown format that only `kol-twitter-exporter` produces. You could run the pair; you can't drop the MCP server into an unrelated setup and expect data. Nothing here is hardened for strangers, and I'm not claiming otherwise.
-- **What I'm strong at is the layer above the code**: defining the problem, deciding the architecture, breaking down the work, and judging whether the output is right. The implementation is largely AI-written — I direct and verify it. That division is the point, not a disclaimer.
-- **These tools produced judgments, not revenue.** They made my growth analysis faster and archivable. Attributing profit to them would be a claim I can't yet back with data — so I don't make it.
-
----
-
-## Who I am
-
-Melodie Liu (刘成成) — user-growth operator, 8 years across K12 education, FinTech and Web3.
-OKX: ~300 affiliate nodes, 25M+ USDT cumulative profit. Working in global growth, in English.
-📧 melodieliu13@gmail.com
+- These tools were built for my own operating workflows, not packaged as consumer products.
+- The MCP server expects the Markdown format produced by the paired exporter; it is not a universal KOL database.
+- The implementation is largely AI-written. I defined the problems, directed the build, tested real cases and accepted or rejected the output.
+- The KOL pipeline produced faster, archivable analysis and partnership intelligence. It has not yet produced a separately attributable revenue figure.
 
 ---
----
 
-# 中文版
+## About
 
-**我做用户增长。这里是增长工作卡住时、现成工具解决不了，我自己造的东西。**
+**Melodie Liu (刘成成)** is a user-growth operator with eight years across K12 education, FinTech and Web3. She uses strategic diagnosis, BD and AI-native execution to build scalable growth systems, and works professionally in English and Mandarin.
 
-不是练手 demo——每一个都在我真实的工作流里跑。它们的起点都一样：一个我本来就在手动硬做、做得很烂的真问题。
+[Email](mailto:melodieliu13@gmail.com) · [Browse the flagship system](./01-kol-growth-intelligence) · [Read the case study](./03-case-studies/kol-growth-intelligence.md)
 
-## 主线 —— KOL 增长情报流水线
+<details>
+<summary><strong>中文摘要</strong></summary>
 
-做 crypto 增长，每个合作决策的原料都是「KOL 到底在说什么」。我原本靠手动读。这个撑不过 10 个账号，而且读完不留档、事后没法回头推理。
+### 我是用户增长操盘手，AI 是我放大增长方法的工具
 
-于是有了这条链：
+我的工作顺序是：先诊断真正的增长断点，再设计能够规模化的系统，最后用 AI 压缩研究和执行成本。
 
-```
-  kol-twitter-exporter（Chrome 扩展 · 1,200 行 JS）
-     把一个 KOL 整月推文抓下来 → 197 个账号、11,109 条推文
-                                   2026-06 完整存档，存成 Markdown
-              ↓
-  kol-signal-mcp（MCP Server · Node 官方 SDK）
-     把存档封装成 LLM 能调用的工具 → list_kols() / search_kol()
-     我用大白话问，模型自己决定调哪个工具
-              ↓
-  月度情报报告（11 个固定小节 · 影响力加权）
-     → 谁在涨关注、什么叙事在成形、哪些账号值得合作
-```
+- **增长实绩**：OKX 约 300 个 affiliate 节点，累计利润超过 2,500 万 USDT；一个 KOL 案例中首交 26 → 144、返佣 +65%；作业帮扩科率 18%，高于行业 13–14%。
+- **AI 主作品**：KOL 增长情报流水线，覆盖 197 个账号、11,109 条推文，由 Chrome 插件完成结构化存档，MCP Server 提供检索，AI 辅助生成可复用的情报报告。
+- **诚实边界**：增长实绩证明我过去被买单的结果；本仓库证明我现在怎样用 AI 放大增长工作。两组证据不做虚假因果归因。
 
-**它取代了什么**：手动开标签页读。**它产出什么**：一个能查询的 11,109 条推文存档，和一份我真的拿来决定「该找谁聊」的月报。
+我负责定义问题、增长逻辑、系统架构、验收标准和最终判断；AI 负责实现、调试与重复劳动。这不是程序员作品集，而是一份 **用户增长 × AI 执行力** 的真实证据。
 
-有意思的不是抓取，是中间那个盒子。把自己的数据封装成 **MCP 工具**，意味着我不再写查询、而是直接问问题，由模型决定调什么工具——这就是「用 AI」和「为 AI 而造」的分界线。
-
-## 同一个模式，不同的问题
-
-| 工具 | 撞的墙 | 造了什么 |
-|---|---|---|
-| `iflyrec-transcript-exporter` | 会议录音转写完了却锁在网页里，没有批量导出，而我有 678 条要复盘。 | 逆向出站点真实的 POST 接口、请求体和翻页游标。单条导出 + 全历史批量导出。`v0.6.1 · 506 行` |
-| `dedao-clippings-exporter` | 课程平台不给导出。我要整门课进笔记，通用网页剪藏做不了批量。 | DOM → Markdown，整门课批量，用 File System Access API 直接写盘。`v1.85 · 3,567 行`——最难的是静默失败，见工程复盘 |
-
-## 诚实的边界
-
-- **这些是为我自己的工作流造的，不是打包好的产品。** `kol-signal-mcp` 读的 Markdown 格式只有 `kol-twitter-exporter` 生产得出来。这一对可以配着跑；但你没法把 MCP server 单独塞进别的环境还指望它有数据。这里没有任何东西是为陌生人加固过的，我也不假装有。
-- **我强的是代码之上那一层**：定义问题、定架构、拆任务、判断产出对不对。实现主要由 AI 写，我指挥并验收。这个分工是重点，不是免责声明。
-- **这些工具产出的是判断，不是收入。** 它们让我的增长分析更快、可存档。把利润归因给它们，是我目前拿不出数据支撑的主张——所以我不这么说。
-
-## 关于我
-
-刘成成 Melodie Liu —— 用户增长操盘手，8 年横跨 K12 教育、FinTech、Web3。
-OKX：约 300 个 affiliate 节点，累计产出利润超 2500 万 USDT。做全球市场的增长，工作语言英语。
-📧 melodieliu13@gmail.com
+</details>

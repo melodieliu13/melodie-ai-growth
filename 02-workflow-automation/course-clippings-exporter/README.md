@@ -5,7 +5,7 @@
 加载目录：
 
 ```text
-/Users/melodie2026/Documents/MelodieOS 2/dedao-clippings-exporter/extension
+02-workflow-automation/course-clippings-exporter/extension
 ```
 
 刷新得到页面后，右上角会出现三个按钮：

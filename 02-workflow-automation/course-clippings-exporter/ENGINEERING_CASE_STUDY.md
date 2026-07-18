@@ -25,7 +25,7 @@
 当前代码位置：
 
 ```text
-/Users/melodie2026/Documents/MelodieOS 2/dedao-clippings-exporter
+02-workflow-automation/course-clippings-exporter
 ├── README.md
 └── extension
     ├── manifest.json
