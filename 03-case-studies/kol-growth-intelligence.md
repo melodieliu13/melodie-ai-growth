@@ -57,14 +57,6 @@ The public evidence separates two different decisions:
 | Sanitized live query | [`Input → Output`](./kol-growth-intelligence-output.md) |
 | KOL priority judgment | [`Partner Decision Brief`](./kol-partner-decision-brief.md) |
 
-### Reserved live-run screenshot position
-
-The remaining visual proof item will appear here after a real run on a safe public X account. The file location is reserved as `assets/screenshots/kol-exporter-live-run.png`; no image link or simulated screenshot is shown before the file exists.
-
-*Caption: KOL Signal exporter completing a real public-account run, with completion status and the new or cumulative item count visible.*
-
-The final crop must exclude browser avatars, bookmarks, signed-in account details and other private information.
-
 ## 6. A judgment the workflow changed
 
 One research question was whether AI was pulling attention away from crypto. The first synthesis made the relationship sound causal. I rejected that framing: attention data could not prove capital movement, and the source pattern pointed to different audiences rather than one zero-sum audience.

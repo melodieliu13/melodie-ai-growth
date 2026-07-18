@@ -36,8 +36,6 @@ I built a Chrome extension and a search tool that made **197 accounts and 11,100
 
 [View the workflow and code](./01-kol-growth-intelligence) · [Read the case](./03-case-studies/kol-growth-intelligence.md) · [See real MCP Input → Output and market judgment](./03-case-studies/kol-growth-intelligence-output.md) · [See the KOL Partner Decision Brief](./03-case-studies/kol-partner-decision-brief.md)
 
-**Live-run screenshot position:** reserved here for the Chrome exporter running on a public X account, with completion status and item count visible. No placeholder image is rendered before the real screenshot exists.
-
 ## 3 · Operate at scale — 1,200-partner Campaign Operations
 
 During OKX's 2025 Lunar New Year campaign, three overlapping activity tracks created an execution problem. The campaign covered roughly **1,200 partners**; rules were complex, holiday motivation was low, and reward farming had to be controlled.
