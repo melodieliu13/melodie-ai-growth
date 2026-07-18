@@ -1,7 +1,7 @@
 {
   "name": "kol-signal-mcp",
   "version": "1.0.0",
-  "description": "MCP server that lets Claude query the MelodieOS KOL 情报库 (search_kol / list_kols).",
+  "description": "MCP server for querying a local KOL research archive (search_kol / list_kols).",
   "type": "module",
   "bin": {
     "kol-signal-mcp": "server.js"

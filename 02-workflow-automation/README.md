@@ -1,10 +1,12 @@
-# Workflow Automation
+# Supporting Workflow Tools
 
-Supporting evidence of a reusable AI-assisted build pattern: when important work was trapped behind a manual web interface, I turned the workflow into structured files that could be reviewed and used by AI.
+These tools are secondary evidence of a reusable build habit: when important work is trapped behind repetitive web interfaces, I turn it into structured files that can be reviewed, searched and used by AI.
 
-| Project | Scale | Evidence |
-|---|---:|---|
-| [Transcript exporter](./transcript-exporter) | 678 recordings | Private POST endpoint, request body and cursor pagination reverse-engineered; bulk export working |
-| [Course clippings exporter](./course-clippings-exporter) | Whole-course batch export | DOM → Markdown, persistent folder access, v1.85 after real-content QA |
+They do **not** occupy a flagship growth-case slot and are not presented as revenue or acquisition outcomes.
 
-These projects demonstrate execution and architecture reuse. They are not presented as growth outcomes or packaged consumer products.
+| Tool | Manual bottleneck | Shipped evidence | Boundary |
+|---|---|---|---|
+| [Meeting transcript exporter](./transcript-exporter) | No useful bulk export for a 678-recording archive | v0.6.1 single and batch export, including cursor pagination | Requires an authenticated account and exports only the user's accessible records |
+| [Course clippings exporter](./course-clippings-exporter) | Dozens of paid courses saved one article at a time | v1.85 sync workflow with resume, repair and stop controls | DOM heuristics may require maintenance when the source site changes |
+
+The tools share a product principle: remove repetitive handling while keeping source fidelity, human QA and a safe stop condition.

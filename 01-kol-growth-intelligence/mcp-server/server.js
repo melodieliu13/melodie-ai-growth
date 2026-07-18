@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 // KOL Signal Intelligence — MCP Server
-// 让 Claude 直接查询 MelodieOS 的 KOL 情报库，不用每次手动翻文件。
+// Let an MCP client query a local KOL research archive.
 //
 // 暴露两个工具：
 //   - list_kols(category?)        列出所有已抓取的 KOL（handle / 身份分类 / 月份 / 推文数）
 //   - search_kol(query, ...)      按 handle 取某个 KOL 的推文，或按关键词全库检索推文
 //
-// 数据根目录默认指向 MelodieOS 的 KOL详情/；可用环境变量 KOL_DATA_ROOT 覆盖。
+// Configure the archive with KOL_DATA_ROOT; otherwise use ./data.
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
@@ -14,9 +14,7 @@ import { z } from "zod";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
-const DATA_ROOT =
-  process.env.KOL_DATA_ROOT ||
-  "/Users/melodie2026/Documents/MelodieOS/05-信号情报/KOL情报库/KOL详情";
+const DATA_ROOT = process.env.KOL_DATA_ROOT || join(process.cwd(), "data");
 
 // ---------- 解析层 ----------
 

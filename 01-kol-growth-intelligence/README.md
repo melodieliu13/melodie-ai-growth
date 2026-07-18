@@ -1,23 +1,39 @@
-# KOL Growth Intelligence
+# KOL Partner Intelligence
 
-The flagship system in this portfolio: a real user-growth research workflow that turns KOL timelines into structured, queryable partnership intelligence.
+A working growth-research workflow for deciding which accounts, narratives and potential partners deserve deeper attention.
+
+## The operating problem
+
+Manual timeline reading worked for ten accounts, not hundreds. This workflow makes source material retrievable without pretending that retrieval is the business decision.
 
 ```text
-197 accounts / 11,100 tweets
+197 accounts / 11,100 posts
         ↓
-Chrome extension → monthly Markdown archive
+monthly source archive
         ↓
-MCP server → list_kols / search_kol
+list_kols / search_kol
         ↓
-AI-assisted synthesis → human growth decision
+source comparison
+        ↓
+human growth decision + next action
 ```
 
 ## Components
 
-- [`twitter-exporter`](./twitter-exporter) — archives monthly X/Twitter timelines as Markdown.
-- [`mcp-server`](./mcp-server) — exposes the archive as tools an LLM can call.
-- [Case study](../03-case-studies/kol-growth-intelligence.md) — explains the growth problem, decisions, evidence and boundaries.
+- [`twitter-exporter`](./twitter-exporter) — Chrome extension that archives monthly X/Twitter timelines as Markdown.
+- [`mcp-server`](./mcp-server) — exposes the archive through two tools an LLM client can call.
+- [Case study](../03-case-studies/kol-growth-intelligence.md) — the growth problem, Before → After, failures and judgment boundary.
+- [Real Input → Output](../03-case-studies/kol-growth-intelligence-output.md) — a live MCP query published as sanitized aggregate evidence.
 
-## Why it matters
+## Visible evidence
 
-The collection code is useful, but it is not the core value. The value is the operating design: preserve source evidence, make it retrievable by an AI system, apply a repeatable synthesis structure, and keep the final partnership decision human-owned.
+- Working source code for collection and retrieval.
+- A real MCP client smoke test.
+- A 2026-07-18 live query that returned 89 matching posts from 27 sources.
+- A sanitized decision output showing what the operator accepted, rejected and changed.
+
+One screenshot of the Chrome exporter running is still to be added. No placeholder image or reconstructed product UI is used in its place.
+
+## Privacy boundary
+
+The private archive is intentionally excluded. This repository contains no collected post corpus, account-level notes, tokens, keys or private analysis.

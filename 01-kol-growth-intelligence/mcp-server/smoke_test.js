@@ -6,6 +6,7 @@ import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js"
 const transport = new StdioClientTransport({
   command: "node",
   args: ["server.js"],
+  env: { ...process.env },
 });
 const client = new Client({ name: "smoke", version: "1.0.0" });
 await client.connect(transport);
@@ -21,10 +22,15 @@ const tools = await client.listTools();
 console.log("工具列表:", tools.tools.map((t) => t.name).join(", "));
 
 // 2) list_kols（只看官方账号）
-show("list_kols(category=官方账号)", await client.callTool({
+const listResult = await client.callTool({
   name: "list_kols",
   arguments: { category: "官方账号" },
-}));
+});
+show("list_kols(category=官方账号)", listResult);
+if ((listResult.content?.[0]?.text ?? "").startsWith("未找到任何 KOL 数据")) {
+  await client.close();
+  throw new Error("No archive data found. Set KOL_DATA_ROOT before running the smoke test.");
+}
 
 // 3) search_kol —— handle 模式
 show("search_kol(query=star_okx, limit=2)", await client.callTool({

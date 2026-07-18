@@ -1,60 +1,79 @@
-# kol-signal-mcp
+# KOL Signal MCP Server
 
-一个 **MCP Server**，让 Claude 直接查询 MelodieOS 的 KOL 情报库，不用每次手动翻文件。
-属 P5（信号情报）配套工具，也是对齐 Foresight / Predict.fun JD "AI 生态拓展"（把数据/API 封装成 Agent 可调用的工具）的最小真实练习。
+A small Node MCP server that makes a local KOL research archive queryable by an LLM client.
 
-## 它做什么
+## What it exposes
 
-暴露两个工具给 Claude：
-
-| 工具 | 作用 |
+| Tool | Operator use |
 |---|---|
-| `list_kols(category?)` | 列出库里所有已抓取的 KOL：handle / 身份分类 / 已有月份 / 推文数。想知道"库里都有谁"先用它。 |
-| `search_kol(query, month?, limit?, sort?)` | `query` 是 **handle**（如 `star_okx`）→ 返回这个 KOL 的推文；是**关键词**（如 `MiCA`、`稳定币`）→ 全库检索命中的推文。可按 `month` 过滤、`limit` 限量、`sort=time\|engagement` 排序。 |
+| `list_kols(category?)` | Inspect available accounts, source categories, months and post counts |
+| `search_kol(query, month?, limit?, sort?)` | Retrieve posts by handle or keyword, optionally filtered by month and sorted by time or engagement |
 
-数据源是 `05-信号情报/KOL情报库/KOL详情/[分类]/[handle]/YYYY-MM_handle.md`（Chrome 插件抓的月度推文存档）。
+The server retrieves evidence. It does not score partner value or make the final growth decision.
 
-## 怎么接进 Claude Code
+## Install
 
-项目根 `05-信号情报` 所在的 vault 根目录（`MelodieOS/`）已放了 `.mcp.json`：
+```bash
+npm install
+```
+
+## Configure the data root
+
+Set `KOL_DATA_ROOT` to a local archive with this structure:
+
+```text
+KOL_DATA_ROOT/
+  source-category/
+    account-handle/
+      2026-06_account-handle.md
+```
+
+Example client configuration:
 
 ```json
 {
   "mcpServers": {
     "kol-signal": {
       "command": "node",
-      "args": ["/absolute/path/to/01-kol-growth-intelligence/mcp-server/server.js"]
+      "args": ["/absolute/path/to/mcp-server/server.js"],
+      "env": {
+        "KOL_DATA_ROOT": "/absolute/path/to/your/archive"
+      }
     }
   }
 }
 ```
 
-1. `cd 01-kol-growth-intelligence/mcp-server && npm install`（只需一次）
-2. 重启 Claude Code（在 MelodieOS 目录里启动），首次会提示是否信任这个项目的 MCP server → 允许
-3. 之后直接对 Claude 说"用 search_kol 查一下 star_okx 六月说了啥"即可
+The public repository does not include the private production archive.
 
-## 自己验证能跑
+## Verify with a real MCP client
 
 ```bash
-npm install
-node smoke_test.js   # 起一个真实 MCP client 调三个工具，打印真数据
+KOL_DATA_ROOT=/absolute/path/to/your/archive node smoke_test.js
 ```
 
-## 数据根目录
+The smoke test starts the server, lists its tools and calls both `list_kols` and `search_kol`.
 
-默认写死指向 Melodie 本机的 `KOL详情/`。换机器 / 开源给别人用时，用环境变量覆盖：
+A production query was run on 2026-07-18 with:
 
-```bash
-KOL_DATA_ROOT=/path/to/KOL详情 node server.js
+```json
+{
+  "query": "MiCA",
+  "month": "2026-06",
+  "limit": 100,
+  "sort": "time"
+}
 ```
 
-## 技术说明
+It returned 89 matching posts from 27 sources. [See the sanitized output](../../03-case-studies/kol-growth-intelligence-output.md).
 
-- Node（ESM），官方 `@modelcontextprotocol/sdk`，stdio transport。
-- 解析：按 frontmatter 取 `month/tweet_count`，按 `<!-- id:xxx -->` 注释切推文，正则抠时间戳和 `互动：转发/点赞/回复`。
-- 索引进程内缓存（月度快照数据 session 内不变，够用）。
+## Implementation
 
-## 为什么是 Node 不是 Python
+- Node.js, ESM and the official `@modelcontextprotocol/sdk`.
+- stdio transport.
+- Monthly Markdown parsing with in-process caching.
+- Environment-configured data root; no private archive path is embedded in the public code.
 
-Melodie 的工具链（KOL 抓取插件、得到导出器）都是 JS，系统 Python 是老的 3.9 且没装 uv。Node v24 现成、零摩擦。
-（P5 的另一个脚本 `市场快照/market_snapshot.py` 是 Python——因为那个只用标准库、不装依赖反而最省事。分工：抓取/查询走 JS，纯 API 拉取走 Python stdlib。）
+## Boundary
+
+Keyword retrieval can surface evidence and source disagreement. It cannot prove a repeated claim, infer causality or decide which partner deserves a commercial offer.

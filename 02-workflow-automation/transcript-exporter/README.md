@@ -1,21 +1,41 @@
-# 讯飞听见 转写导出器 v0.1
+# Meeting Transcript Exporter · v0.6.1
 
-在讯飞听见转写详情页(`aboutPage`)加一个"导出转写(.md)"按钮，点击后直接调用页面自带的
-`transcriptResults` 接口拿完整转写文字（说话人 + 原文），存成 Markdown 文件下载。
+A Chrome extension for exporting transcripts from an authenticated iFlyRec account into structured Markdown.
 
-## 安装（Chrome 加载已解压的扩展程序）
+## The problem
 
-1. 打开 `chrome://extensions`
-2. 右上角打开"开发者模式"
-3. 点击"加载已解压的扩展程序"，选择本项目里的 `extension` 文件夹
-4. 打开任意一条讯飞听见转写详情页（URL 形如 `iflyrec.com/aboutPage/?orderId=...&fileSource=...&originAudioId=...`）
-5. 右上角会出现蓝色"导出转写(.md)"按钮，点击即下载
+The archive contained **678 recordings**, but the web interface did not provide a useful full-history bulk export. Opening and saving each record manually made the material effectively unusable for later review.
 
-## 遇到问题
+## Before → After
 
-按钮点击后如果弹出错误提示，打开 Chrome 开发者工具（Cmd+Option+I）→ Console 标签，截图发给 Claude 诊断。
+| Before | After |
+|---|---|
+| Open one recording at a time | Load the authenticated recording list with cursor pagination |
+| Copy transcript text manually | Export speaker labels and transcript text to Markdown |
+| Repeat across the archive | Select records in a batch-export panel and save them consistently |
 
-## 现状（v0.1）
+## What runs
 
-- 只支持单条转写页面导出，还没做首页批量导出
-- 是否需要批量版本（在"我的文件"列表页批量勾选导出多条），视这一版实测效果决定
+- **Single export:** adds an export button on a transcript-detail page.
+- **Batch export:** loads the user's recording history through the authenticated private POST endpoint, including request body and pagination cursor.
+- **Output:** speaker-labelled Markdown files.
+
+## Install
+
+1. Open `chrome://extensions`.
+2. Enable Developer mode.
+3. Choose **Load unpacked**.
+4. Select this project's `extension` folder.
+5. Open iFlyRec while signed in.
+
+## What broke
+
+- The first version supported only a single detail page and did not address the archive-scale problem.
+- Full-history loading required reconstructing the real POST request, request body and cursor pagination rather than scraping only the visible list.
+- Speaker identity must be corrected in the source interface before export when the original labels are ambiguous.
+
+## Boundary
+
+- The extension does not bypass authentication or access records outside the signed-in user's account.
+- No recording, transcript, token or account data is included in this repository.
+- The **678-recording** figure describes the production archive tested by the operator; it is not bundled demo data.

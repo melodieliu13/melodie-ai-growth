@@ -1,97 +1,87 @@
-# Case Study · KOL Growth Intelligence
+# Case Study · KOL Partner Intelligence
 
 ## One-line summary
 
-I replaced manual KOL timeline reading with a working pipeline that archives 197 accounts / 11,100 tweets, exposes the archive to an LLM through MCP tools, and supports a repeatable partnership-intelligence report.
+I replaced repeated KOL timeline reading with a working research workflow that makes **197 accounts and 11,100 posts** searchable, then keeps the final partnership judgment with the operator.
 
-## 1. The growth problem
+## 1. The real growth job
 
 KOL partnerships require more than follower counts. The useful signals are dispersed across timelines: what an account repeatedly discusses, which products it stands behind, how its position changes and whether multiple credible sources converge.
 
-Manual reading worked for a handful of accounts. It did not scale, could not be searched reliably later and made month-to-month comparison difficult.
+The growth decision is practical: **Who deserves deeper research, a tailored proposal or no active acquisition time?**
 
-## 2. The product decision
+## 2. Why the manual approach stopped scaling
 
-I did not begin with “build an AI agent.” I began with the information bottleneck:
+Manual reading worked for a handful of accounts. It did not work across hundreds because it was slow, difficult to search later and unreliable for comparison across sources or months.
 
-1. preserve the source material in a stable format;
-2. make it queryable without requiring technical search syntax;
-3. synthesize it through a consistent report structure;
-4. keep the final growth judgment with the operator.
+## 3. Before → After
 
-That produced a three-layer design: collection, retrieval and decision support.
+| Before | After |
+|---|---|
+| Open profiles and reread timelines | Preserve monthly source material in a consistent archive |
+| Search by memory | Query accounts or topics through `search_kol` |
+| Treat every mention as equivalent | Separate source types and compare agreement |
+| Produce a descriptive summary | State the decision, confidence, action and disconfirming evidence |
 
-## 3. What runs
+## 4. What runs
 
 ### Collection
 
-The Chrome extension archives monthly X/Twitter timelines as Markdown. It was iterated under real operating pressure, including rate limits and interrupted sessions, and reached a full archive of **197 accounts and 11,100 tweets**.
+The Chrome extension archives monthly X/Twitter timelines as Markdown. It was iterated under real operating pressure, including rate limits, stalled pages and interrupted sessions. The private production archive contains **197 accounts and 11,100 posts**.
 
 ### Retrieval
 
-The Node MCP server exposes two working tools:
+The Node MCP server exposes two tools:
 
 - `list_kols` — inspect the available archive;
-- `search_kol` — search the archive through an LLM tool call.
+- `search_kol` — retrieve posts by handle or keyword, with month, limit and sorting controls.
 
-A smoke test is included in the repository.
+On 2026-07-18, a real MCP call for `MiCA` in `2026-06` returned **89 matching posts from 27 sources**. The public evidence preserves the query parameters and aggregate result while removing handles and post text.
 
 ### Decision support
 
-The archive feeds an influence-weighted monthly intelligence structure designed to surface attention shifts, emerging narratives, source agreement and accounts worth further investigation.
+Retrieval is not the decision. I compare source types, reject causal claims the evidence cannot support, define the growth action and state what would change the judgment.
 
-[See a sanitized Input → Output example](./kol-growth-intelligence-output.md).
+[See the real sanitized MCP query and decision output](./kol-growth-intelligence-output.md).
 
-## 4. A decision the workflow supported
+## 5. Visible proof
+
+| Evidence | Location |
+|---|---|
+| Timeline exporter | [`twitter-exporter`](../01-kol-growth-intelligence/twitter-exporter) |
+| MCP server | [`mcp-server`](../01-kol-growth-intelligence/mcp-server) |
+| Real client test | [`smoke_test.js`](../01-kol-growth-intelligence/mcp-server/smoke_test.js) |
+| Sanitized live query | [`Input → Output`](./kol-growth-intelligence-output.md) |
+
+The remaining visual proof item is one screenshot of the Chrome exporter running on a safe public account. Its absence does not change the code and query evidence already available here.
+
+## 6. A judgment the workflow changed
 
 One research question was whether AI was pulling attention away from crypto. The first synthesis made the relationship sound causal. I rejected that framing: attention data could not prove capital movement, and the source pattern pointed to different audiences rather than one zero-sum audience.
 
-The revised judgment was **audience mismatch**. For growth work, that means testing separate messages for crypto-native users and AI-curious technology/finance audiences instead of treating them as one segment.
+The revised judgment was **audience mismatch**. For growth work, that means testing separate messages for crypto-native users and AI-curious technology/finance audiences instead of forcing one message across both.
 
-### From market signals to relationship priorities
-
-The pipeline supports a partner-triage model I used in KOL growth at OKX. During a regional expansion in Hangzhou, I used AI to discover prospects, research their content and resources, match likely needs, prepare onboarding material and compare competing platforms:
-
-- **A — win:** research deeply, build a tailored proposal and follow up deliberately;
-- **B/C — develop:** use lower-stakes conversations to test the pitch, learn objections and keep future options open;
-- **D — observe:** do not spend active acquisition time, but retain the account as a market and content signal.
-
-I personally opened **5 cross-sector partner nodes**; the team opened about **15**. One quantitative-trading node developed collaboratively reached **200M USDT in monthly trading volume** and qualified as a super node.
-
-The original internal tools are no longer available, so this is operating history rather than reproducible product evidence. The business outcome came from the AI-assisted workflow and offline relationship building together; I do not attribute it to software alone.
-
-I later reused the same logic in a private JD Scout workflow. Job opportunities and KOL partners are different objects, but the operating problem is the same: collect a noisy market, qualify relationship value and reserve scarce attention for the few conversations worth advancing. This shows that the method transfers; it does not claim that a job-search tool has already acquired B2B customers.
-
-## 5. What broke in real use
+## 7. What broke in real use
 
 - X rate limits made a stalled page look like a genuine zero-post result. I added longer waits, three recovery attempts and an automatic second pass before accepting zero.
 - A single followed-account list missed important people by construction. I kept a manual addition path instead of pretending automated coverage was complete.
-- The first report was a descriptive research summary. I rejected it and defined a weighted decision brief with explicit implications, confidence and disagreement.
+- The first report was descriptive. I rejected it and required a decision, confidence level, action and evidence that could reverse the judgment.
+- Keyword retrieval can find evidence; it cannot establish causality or partner fit on its own.
 
-## 6. My role versus AI
+## 8. My role versus AI
 
 | I owned | AI supported |
 |---|---|
 | Defined the partnership-research bottleneck | Drafted and revised implementation code |
-| Chose the browser → Markdown → MCP architecture | Assisted debugging and documentation |
-| Set source-preservation and report requirements | Performed repetitive transformations |
-| Tested real accounts and rejected bad outputs | Accelerated iterations after each failure |
+| Chose the browser → Markdown → MCP design | Assisted debugging and repetitive transformation |
+| Set source-preservation and report requirements | Clustered repeated themes for review |
+| Tested real accounts and rejected weak outputs | Accelerated iterations after each failure |
 | Retained the final partnership judgment | Did not own the business decision |
 
-## 7. Evidence
+## Outcome and boundary
 
-| Evidence | Location |
-|---|---|
-| Timeline exporter | [`01-kol-growth-intelligence/twitter-exporter`](../01-kol-growth-intelligence/twitter-exporter) |
-| MCP server | [`01-kol-growth-intelligence/mcp-server`](../01-kol-growth-intelligence/mcp-server) |
-| Smoke test | [`smoke_test.js`](../01-kol-growth-intelligence/mcp-server/smoke_test.js) |
-| MCP documentation | [`README.md`](../01-kol-growth-intelligence/mcp-server/README.md) |
-| Sanitized output | [`Input → Output`](./kol-growth-intelligence-output.md) |
+**Outcome:** a manual research process became a searchable, repeatable workflow that supports partner and market decisions.
 
-The raw KOL archive and internal report are intentionally not published because they contain collected source material and private working analysis. The code repository contains no tweet archive, meeting transcript, token or private key.
+**Boundary:** the system produced retrieval and decision support, not a separately attributable revenue result. The private archive and account-level analysis are not published.
 
-## 8. Outcome and boundary
-
-**Outcome:** a manual research process became a searchable, repeatable intelligence workflow that I use to decide what and whom to investigate.
-
-**Boundary:** this system produced decision support, not a separately attributable revenue result. It demonstrates AI-native growth execution; it does not claim that the tools caused the career growth figures shown on the portfolio homepage.
+[Return to the portfolio homepage](../README.md)

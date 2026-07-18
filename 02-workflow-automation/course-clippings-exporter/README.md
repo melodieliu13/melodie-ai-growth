@@ -1,29 +1,48 @@
-# 得到 Clippings 导出器
+# Course Clippings Exporter · v1.85
 
-这是独立于 WorkBuddy 的新扩展，用来把得到文章直接保存成 Obsidian Clippings 风格 Markdown。
+A Chrome extension that saves purchased course articles as readable Markdown through the browser's File System Access API.
 
-加载目录：
+## The problem
+
+Dozens of paid courses were trapped behind a one-article-at-a-time interface. Manual clipping required repeated navigation, confirmation and cleanup, while long courses introduced missed pages, duplicates and broken resume points.
+
+## Before → After
+
+| Before | After |
+|---|---|
+| Save each article manually | Sync a course from the current article forward |
+| Accept inconsistent filenames and formatting | Preserve titles, headings, emphasis, images and useful comments |
+| Restart after interruption | Resume, skip correct files, rename mismatches and repair incomplete output |
+| Close the page to stop a bad loop | Use an explicit stop control that clears pending state |
+
+## Controls
 
 ```text
-02-workflow-automation/course-clippings-exporter/extension
+Sync Markdown v1.85     — export, check, resume, rename and repair
+Export current article  — one-page test and debugging
+Stop batch export       — clear the queue and prevent automatic resume
 ```
 
-刷新得到页面后，右上角会出现三个按钮：
+## Install
 
-```text
-同步MD到Clippings vX.XX   ← 主按钮：导出、检查、补漏、改名、修复内容全合一
-只导出当前文章             ← 调试用，单篇测试格式，已存在同名文件时另存为「-codex-test」
-停止批量导出               ← 清队列、停止自动续跑（刷新页面也不会继续跑）
-```
+1. Open `chrome://extensions`.
+2. Enable Developer mode.
+3. Choose **Load unpacked**.
+4. Select this project's `extension` folder.
+5. Open the course site while signed in and choose an output folder when prompted.
 
-第一次导出时，Chrome 会要求选择文件夹。请选择：
+## What broke
 
-```text
-/Users/melodie2026/Documents/MelodieOS/Clippings
-```
+- Early URL extraction failed because the course sidebar was a virtualized SPA rather than a stable link list.
+- Broad title heuristics silently truncated article openings when a sentence inside the body was mistaken for the title.
+- Small courses passed while 400+ article courses exposed navigation and resume failures.
+- Fixing headings or images sometimes caused regressions in comments or formatting, making real-content QA essential.
 
-（也可以选别的目标文件夹，比如 Mini MBA 课程目录——每次都会弹出选择框，不锁死在 Clippings。）
+## Boundary
 
-建议先点「只导出当前文章」测试格式，确认标题、正文、图标都正常，再点「同步MD到Clippings」跑整门课。「同步」按钮是幂等的：已存在且正确的文件会跳过，缺失的会补，标题错的会改名，内容明显残缺的会重写——所以中途断了、或者想检查已跑完的课程有没有漏，直接在断点那篇文章上再点一次同步即可，不用从头开始。
+- v1.85 is a working production tool, not a packaged consumer product.
+- Very long virtualized course lists can still require manual recovery.
+- DOM changes on the source site may require parser updates.
+- No paid article content, account data or local notes are included in this repository.
 
-工程细节和已知问题见 `ENGINEERING_CASE_STUDY.md`。
+[Read the concise engineering case](./ENGINEERING_CASE_STUDY.md)
