@@ -32,7 +32,8 @@ human growth decision + next action
 - A 2026-07-18 live query that returned 89 matching posts from 27 sources.
 - A sanitized decision output showing what the operator accepted, rejected and changed.
 
+## Data scope and privacy
 
-## Privacy boundary
+The exporter archives posts published by public accounts within a user-selected time window. I used it to review market narratives and evaluate potential partners. It is not designed to access protected accounts, private messages or other non-public content.
 
-The private archive is intentionally excluded. This repository contains no collected post corpus, account-level notes, tokens, keys or private analysis.
+The collected archive and account-level research remain private. This repository contains no collected post corpus, account-level notes, tokens, keys or private analysis.
