@@ -2,9 +2,7 @@
 
 > **Sanitized decision brief based on the real research workflow.**
 
-This brief is derived from one real candidate reviewed in the private June 2026 archive, full-profile screening and research shortlist. The handle, post text, post IDs, audience figures and other account-specific details are omitted. The candidate evidence is real and single-candidate; the product context is generalized because no employer-specific brief is published.
-
-This is a public example of my current decision process—not an historical OKX file. It does not claim that outreach, a partnership or a commercial result has already happened.
+**Status:** decision-ready brief based on one real candidate, not a composite. Identifying details have been removed and the product context generalized. Outreach and partnership outcome have not yet been tested.
 
 ## Product context
 
@@ -76,10 +74,7 @@ Stop before the pilot if audience evidence or genuine product use cannot be esta
 
 ## Evidence boundary
 
-- This brief uses one real candidate, not a composite.
-- It removes identifying details and does not reproduce private posts or analysis.
-- The B priority is a current recommendation based on limited evidence—not an objective score.
-- No outreach, partnership, conversion or revenue result is claimed.
-- Retrieval located the evidence; Melodie set the fit logic, priority, offer, action and stop condition.
+- **Evidence:** one real candidate with identifying details removed; the B priority is a current recommendation based on limited evidence, not an objective score.
+- **Decision ownership:** retrieval located the evidence; Melodie set the fit logic, priority, offer, action and stop condition.
 
 [See the real MCP query and market judgment](./kol-growth-intelligence-output.md) · [Read the KOL case](./kol-growth-intelligence.md) · [Return to the portfolio homepage](../README.md)

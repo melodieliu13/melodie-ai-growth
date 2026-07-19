@@ -1,11 +1,11 @@
 # Real Input → Output · KOL Partner Intelligence
 
-This page contains two proof objects:
+This page contains two pieces of evidence:
 
 1. a real MCP query run against the private production archive, published only as sanitized aggregate output;
 2. a growth judgment produced from the wider research process.
 
-No handles, post text, private notes or employer-confidential information are reproduced.
+**Privacy:** handles, post text, private notes and employer-confidential information have been removed.
 
 ## 1. Real MCP query
 

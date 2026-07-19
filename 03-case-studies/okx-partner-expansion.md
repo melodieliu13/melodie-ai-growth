@@ -48,7 +48,6 @@ The reconstruction demonstrates the method, not the appearance of the historical
 
 - Better research did not replace relationship work. The useful step was turning research into a reason to meet, then building trust offline.
 - A technically plausible partner was not automatically a priority. Resource fit, motivation and the ability to onboard users still required human judgment.
-- The original internal product evidence is unavailable, so this is an operating case study rather than reproducible software evidence.
 - The **200M USDT** result belongs to a team-developed partnership. It is not attributed to one person or an AI tool alone.
 
 ## 7. My role versus AI

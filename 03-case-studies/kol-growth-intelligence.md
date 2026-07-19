@@ -80,10 +80,4 @@ The revised judgment was **audience mismatch**. For growth work, that means test
 | Tested real accounts and rejected weak outputs | Accelerated iterations after each failure |
 | Retained the final partnership judgment | Did not own the business decision |
 
-## Result and limits
-
-**Result:** a manual research process became a searchable, repeatable tool for partner and market decisions.
-
-**Limit:** the tool helps me research and decide; it does not have a separately attributable revenue result. The private archive and account-level analysis are not published.
-
 [Return to the portfolio homepage](../README.md)

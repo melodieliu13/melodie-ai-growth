@@ -22,17 +22,11 @@ The campaign rules existed, but the team lacked a clear way to execute them ever
 
 ## 3. Before → After
 
-| Before | After |
-|---|---|
-| Three overlapping rule sets | One action per day, translated into a short script |
-| Static reporting | Daily claim and first-trade tracking |
-| Broad follow-up | Prioritized zero-claim and high-potential partners |
-| Reward allocation by availability | ROI- and quality-based allocation |
-| Automatic rejection of suspicious activity | Human review using historical quality and acquisition evidence |
+I replaced three overlapping rule sets with one action per day and a short script the team could use immediately. I tracked claims and first trades daily, prioritized zero-claim and high-potential partners, and allocated rewards using ROI and acquisition quality rather than availability alone. When activity looked suspicious, I reviewed the partner's history and user quality before deciding whether to stop support or request another allocation.
 
 ## 4. Visible output
 
-The original interface and internal files are unavailable. The public example is a clearly labeled reconstruction showing how rules and daily data became partner-level actions:
+The public reconstruction shows how rules and daily data became partner-level actions:
 
 [Campaign rules → daily action → escalation decision](./campaign-operations-reconstructed-example.md)
 
@@ -41,14 +35,13 @@ The original interface and internal files are unavailable. The public example is
 - Our team moved from last place to **#1 among five teams** in both **claim rate and first-trade rate**.
 - First-trade rate reached **16–17%**, compared with **5–6%** for the other teams.
 
-The campaign covered roughly 1,200 partners team-wide. This is not presented as 1,200 partners personally managed by one operator.
+The campaign covered roughly 1,200 partners team-wide.
 
 ## 6. What broke and where the case stops
 
 - Some communities attempted to farm rewards. Those partners could not be treated as healthy acquisition simply because claims increased.
 - Fraud controls could mis-flag a legitimate high-quality partner when a reward link was copied by abusive users. I used historical profitability, acquisition quality and partner behavior to decide when to provide a human guarantee and request a second allocation.
 - AI-generated scripts reduced cognitive load, but they did not decide who deserved budget or who had been misclassified.
-- No original tool screenshot survives, so the public example is a reconstruction—not historical product evidence.
 
 ## 7. My role versus AI
 
