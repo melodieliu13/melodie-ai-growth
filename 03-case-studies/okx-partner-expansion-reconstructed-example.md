@@ -36,6 +36,6 @@
 
 ## Boundary
 
-This example demonstrates the decision structure used in the expansion workflow. It does not claim that the reconstructed prospect is the specific partner that later reached 200M USDT in monthly trading volume, and it does not reproduce any original internal record.
+This example demonstrates the decision structure used in the expansion workflow. It does not claim that the reconstructed prospect is the specific partner that later reached 200M USDT in monthly trading volume. That portfolio milestone was reached after my departure, and this reconstruction does not reproduce any original internal record.
 
 [Read the operating case](./okx-partner-expansion.md) · [Return to the homepage](../README.md)

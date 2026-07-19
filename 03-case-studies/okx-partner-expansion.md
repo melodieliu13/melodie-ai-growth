@@ -40,16 +40,16 @@ The reconstruction demonstrates the method, not the appearance of the historical
 
 ## 5. Result
 
-- I personally opened **5 new cross-sector partner nodes**.
-- The team opened about **15**.
-- One quantitative-trading node developed collaboratively by the team reached **200M USDT in monthly trading volume** and qualified as a super node.
+- I personally onboarded **5 new cross-sector affiliate partners**.
+- The team onboarded about **15**.
+- One quantitative-trading partner developed through the team initiative later reached **200M USDT in monthly trading volume** and qualified for the highest partner tier. This milestone was reached after I had left OKX.
 
 ## 6. What broke and where the case stops
 
 - Better research did not replace relationship work. The useful step was turning research into a reason to meet, then building trust offline.
 - A technically plausible partner was not automatically a priority. Resource fit, motivation and the ability to onboard users still required human judgment.
 - The original internal product evidence is unavailable, so this is an operating case study rather than reproducible software evidence.
-- The **200M USDT** result belongs to a team-developed partnership. It is not attributed to one person or to an AI tool alone.
+- The **200M USDT** result belongs to a team-developed partnership and was reached after my departure. It is not presented as a result achieved during my tenure or attributed to one person or an AI tool alone.
 
 ## 7. My role versus AI
 

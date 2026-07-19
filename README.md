@@ -9,7 +9,7 @@ I'm Melodie Liu, a global growth operator with eight years of experience across 
 These are career outcomes, not results attributed to the tools in this repository.
 
 - Managed a portfolio of roughly 300 affiliate partners that generated 25M+ USDT in cumulative profit at OKX.
-- Moved first trades from **26 to 144** and increased rebates **65%** in one KOL partnership case.
+- Increased monthly first trades by approximately **454%** and rebates by **65%** in one KOL partnership case.
 - Worked across global communities and partner ecosystems in English and Chinese, including an English ZK Sync Space that helped lift weekly active bridge addresses **8%**.
 
 ## 1 · Find opportunities — OKX Partner Expansion
@@ -18,7 +18,7 @@ Regional growth had plateaued inside the same crypto circles. I reframed the pro
 
 **Before → After:** ad hoc online prospecting → AI-assisted prospect discovery and background research → partner-fit judgment → tailored onboarding and competitor comparison → offline relationship building.
 
-**Result:** I personally opened **5 cross-sector partner nodes**; the team opened about **15**. One team-developed quantitative-trading node reached **200M USDT in monthly trading volume**.
+**Result:** I personally onboarded **5 cross-sector affiliate partners**; the team onboarded about **15**. One quantitative-trading partner developed through the team initiative later reached **200M USDT in monthly trading volume**, after I had left OKX.
 
 The original internal tools are no longer available. This is an operating case study, not a claim that software alone produced the result.
 
@@ -87,13 +87,13 @@ Melodie Liu (刘成成) · Global Growth · English / 中文<br>
 
 ### 我发现增长机会，把市场信号变成合作判断，再用 AI 扩大执行规模。
 
-我是一名拥有八年教育、FinTech 和 Web3 经验的全球增长操盘手。在 OKX，我管理的约 300 个合作伙伴累计产生了 25M+ USDT 利润；在一个 KOL 合作案例中，首交人数从 26 提升至 144，返佣增长 65%。这些是我的职业结果，不归因于本仓库中的工具。
+我是一名拥有八年教育、FinTech 和 Web3 经验的全球增长操盘手。在 OKX，我管理的约 300 个合作伙伴累计产生了 25M+ USDT 利润；在一个 KOL 合作案例中，月度首交人数增长约 454%，返佣增长 65%。这些是我的职业结果，不归因于本仓库中的工具。
 
 这个仓库的核心是三份增长证据：
 
-1. **找机会**：OKX 杭州拓展中，个人开出 5 个跨圈层节点，团队约 15 个；团队协作开发的一个量化节点月交易量达到 2 亿 USDT。
+1. **找机会**：OKX 杭州拓展中，我个人拓展并开通了 5 个跨圈层 affiliate partners，团队共约 15 个。团队在这轮拓展中推进的一个量化合作伙伴，在我离开 OKX 后月交易量达到 2 亿 USDT。
 2. **做判断**：把 197 个 KOL 账号、11,100 条内容变成可查询的研究库，再由我判断该追谁、该测试什么信息、什么证据还不够。
-3. **规模化执行**：春节活动覆盖约 1,200 个节点；团队从垫底做到五组领取率、首交率双第一，首交率 16–17%，其他团队为 5–6%。
+3. **规模化执行**：春节活动覆盖约 1,200 个合作伙伴；团队从垫底做到五组领取率、首交率双第一，首交率 16–17%，其他团队为 5–6%。
 
 两个 OKX 历史项目以工作案例呈现。重建示例均有醒目标注，不冒充当年的内部界面或文件。
 
