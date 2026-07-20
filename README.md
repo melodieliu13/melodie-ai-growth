@@ -6,15 +6,13 @@ I use AI when research or execution stops scaling. AI helps me find and process 
 
 ## My operating advantage — MelodieOS
 
-**Any capable AI agent can join the work. The work does not reset.**
+**I manage 12 ongoing projects as one connected personal operating system.**
 
-I built MelodieOS, a private command layer that keeps goals, project state, delegation boundaries, accepted evidence and next actions continuous across Claude, Codex or another capable agent. I retain control of priorities, facts, business judgment, privacy and final review.
+MelodieOS grew from practical problems: a career transition that needed a real pipeline, courses that produced notes but not action, market information that did not reliably change decisions, and health goals that needed daily feedback. Today it connects **7,470 private Markdown files** across P0–P11, routes outside knowledge into the right project and keeps the next action visible when the AI agent changes.
 
-![Synthetic MelodieOS product demo](./human-ai-operating-system/synthetic-control-plane.svg)
+One concrete result: P9, the health-management project, has helped me lose **10+ jin (5+ kg)** by turning a broad goal into a baseline, daily inputs, guardrails and weekly adjustment—not by relying on motivation alone.
 
-*Synthetic public demo. It contains no private MelodieOS data, files, screenshots, directory names or project details.*
-
-[Explore the public product model →](./human-ai-operating-system/)
+[See why each project exists and how the growth flywheel works →](./human-ai-operating-system/)
 
 ## Selected work
 
