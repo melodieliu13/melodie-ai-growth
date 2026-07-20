@@ -4,6 +4,18 @@ I'm Melodie Liu, a global growth operator with eight years of experience across 
 
 I use AI when research or execution stops scaling. AI helps me find and process evidence; I decide which opportunity to pursue, what action to take and when the evidence is not strong enough.
 
+## My operating advantage — MelodieOS
+
+**Any capable AI agent can join the work. The work does not reset.**
+
+I built MelodieOS, a private command layer that keeps goals, project state, delegation boundaries, accepted evidence and next actions continuous across Claude, Codex or another capable agent. I retain control of priorities, facts, business judgment, privacy and final review.
+
+![Synthetic MelodieOS product demo](./human-ai-operating-system/synthetic-control-plane.svg)
+
+*Synthetic public demo. It contains no private MelodieOS data, files, screenshots, directory names or project details.*
+
+[Explore the public product model →](./human-ai-operating-system/)
+
 ## Selected work
 
 ### 1 · Find opportunities — Affiliate Partner Acquisition at OKX
