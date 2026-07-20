@@ -32,7 +32,11 @@ I built a Chrome extension and an MCP search tool that made **197 accounts and 1
 
 **Decision example:** **B — run one focused discovery call and pilot; do not scale yet.** The brief shows supporting evidence, counter-evidence, the offer, first outreach and stop conditions.
 
-[Inspect the workflow and code](./01-kol-growth-intelligence) · [See real MCP Input → Output](./03-case-studies/kol-growth-intelligence-output.md) · [Read the Partner Decision Brief](./03-case-studies/kol-partner-decision-brief.md)
+**Business reader:** [Read the Partner Decision Brief →](./03-case-studies/kol-partner-decision-brief.md)
+
+**Verify the evidence:** [See real MCP Input → Output](./03-case-studies/kol-growth-intelligence-output.md)
+
+**Inspect the implementation:** [View the workflow and code](./01-kol-growth-intelligence)
 
 ### 3 · Execute at scale — 1,200-partner Campaign Operations
 
