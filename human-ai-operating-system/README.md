@@ -19,6 +19,8 @@ The problem was not where to store more notes. It was how to turn a real problem
 
 *File counts include active working documents, source material and archives as of July 20, 2026. The numbers are public; the underlying private material is not.*
 
+![MelodieOS growth flywheel and 12-project map](./melodieos-growth-flywheel.svg)
+
 ## Why each project exists
 
 Each project began with a problem I was actually experiencing. The system grew by solving those problems one by one.
