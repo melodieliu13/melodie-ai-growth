@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+  <title id="title">MelodieOS dynamic routing flywheel</title>
+  <desc id="desc">P0 selects the active route. The current career route moves from signals and industry judgment through career demand, growth experimentation, public evidence and communication, then returns market feedback to P0. Other projects supply knowledge, partners and constraints.</desc>
+  <defs>
+    <marker id="navy-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#17304f"/></marker>
+    <marker id="gold-arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#b87912"/></marker>
+    <style>
+      .title{font:700 32px Georgia,serif;fill:#152941}.sub{font:500 17px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#52657a}.layer{font:700 13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:1.5px;fill:#6a788a}.name{font:700 17px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#152941}.copy{font:400 13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#506277}.tower{font:700 23px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#152941}.route{font:700 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:1px;fill:#986515}.chip{font:700 14px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#152941}.feedback{font:700 13px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;fill:#986515}
+    </style>
+  </defs>
+  <rect width="1600" height="820" rx="24" fill="#f4f6f8"/>
+  <text x="60" y="55" class="title">Dynamic routing around the current objective</text>
+  <text x="60" y="84" class="sub">P0 chooses the route. Projects enter as owners, suppliers or constraints; results change the next allocation.</text>
+
+  <text x="60" y="126" class="layer">1 · CONTROL TOWER</text>
+  <rect x="60" y="143" width="1480" height="92" rx="18" fill="#fff4dd" stroke="#d2a24c" stroke-width="2"/>
+  <text x="86" y="180" class="tower">P0 · Choose the objective, active route and resource limits</text>
+  <text x="86" y="208" class="copy">CURRENT OBJECTIVE HIGHLIGHTED BELOW · CAREER + PUBLIC EVIDENCE</text>
+  <text x="60" y="284" class="layer">2 · CURRENT ROUTE</text>
+  <text x="800" y="284" text-anchor="middle" class="route">READ THE MARKET → TEST IN REALITY → EARN PUBLIC PROOF → RETURN FEEDBACK</text>
+  <g transform="translate(55 310)"><rect width="210" height="118" rx="16" fill="#e7f4f1" stroke="#a5c9c1"/><text x="18" y="37" class="name">P5 / P8</text><text x="18" y="65" class="copy">Signals + company</text><text x="18" y="86" class="copy">and industry judgment</text></g>
+  <path d="M271 369 H304" stroke="#17304f" stroke-width="3" marker-end="url(#navy-arrow)"/>
+  <g transform="translate(310 310)"><rect width="210" height="118" rx="16" fill="#fff7e7" stroke="#d7ae65"/><text x="18" y="37" class="name">P2</text><text x="18" y="65" class="copy">What capability is</text><text x="18" y="86" class="copy">the market buying?</text></g>
+  <path d="M526 369 H559" stroke="#17304f" stroke-width="3" marker-end="url(#navy-arrow)"/>
+  <g transform="translate(565 300)"><rect width="240" height="138" rx="18" fill="#fff1d2" stroke="#c98f29" stroke-width="3"/><text x="18" y="39" class="name">P6 · Experiment</text><text x="18" y="67" class="copy">Real audience + channel</text><text x="18" y="89" class="copy">minimum action + metric</text><text x="18" y="111" class="copy">stop condition + result</text></g>
+  <path d="M811 369 H844" stroke="#b87912" stroke-width="4" marker-end="url(#gold-arrow)"/>
+  <g transform="translate(850 310)"><rect width="210" height="118" rx="16" fill="#e8eef5" stroke="#a9b9ca"/><text x="18" y="37" class="name">P3</text><text x="18" y="65" class="copy">Is the evidence real,</text><text x="18" y="86" class="copy">safe and useful?</text></g>
+  <path d="M1066 369 H1099" stroke="#17304f" stroke-width="3" marker-end="url(#navy-arrow)"/>
+  <g transform="translate(1105 310)"><rect width="210" height="118" rx="16" fill="#fff7e7" stroke="#d7ae65"/><text x="18" y="37" class="name">P7</text><text x="18" y="65" class="copy">Resume, interview</text><text x="18" y="86" class="copy">and partner language</text></g>
+  <path d="M1321 369 H1354" stroke="#17304f" stroke-width="3" marker-end="url(#navy-arrow)"/>
+  <g transform="translate(1360 310)"><rect width="185" height="118" rx="16" fill="#e8f4eb" stroke="#a5c8ad"/><text x="18" y="37" class="name">Market feedback</text><text x="18" y="65" class="copy">Response changes</text><text x="18" y="86" class="copy">the next priority</text></g>
+
+  <path d="M1546 369 H1564 V190 H1542" fill="none" stroke="#b87912" stroke-width="3" marker-end="url(#gold-arrow)"/>
+  <text x="1450" y="472" text-anchor="end" class="feedback">RESULTS, FAILURES AND ZEROES RETURN TO P0</text>
+
+  <text x="60" y="585" class="layer">3 · AVAILABLE TO THE ACTIVE ROUTE</text>
+  <g transform="translate(60 605)"><rect width="460" height="84" rx="16" fill="#e7f4f1" stroke="#a5c9c1"/><text x="20" y="34" class="chip">P1 + P11 · Learning modules</text><text x="20" y="60" class="copy">Concepts, courses and outside methods called by a live bottleneck</text></g>
+  <g transform="translate(570 605)"><rect width="460" height="84" rx="16" fill="#fff7e7" stroke="#d7ae65"/><text x="20" y="34" class="chip">P4 · Real people and relationships</text><text x="20" y="60" class="copy">Partners, users, collaborators, trust and adoption friction</text></g>
+  <g transform="translate(1080 605)"><rect width="460" height="84" rx="16" fill="#eef1f5" stroke="#b6c1ce"/><text x="20" y="34" class="chip">P9 + P10 · Capacity and constraints</text><text x="20" y="60" class="copy">Health, runway, risk and the realistic operating load</text></g>
+
+  <text x="60" y="738" class="layer">OTHER ROUTES P0 CAN ACTIVATE</text>
+  <rect x="60" y="756" width="710" height="42" rx="14" fill="#edf1f5"/>
+  <text x="80" y="782" class="copy">Growth work · P5/P8 → P6 → P4 → user/partner feedback → P0</text>
+  <rect x="790" y="756" width="750" height="42" rx="14" fill="#edf1f5"/>
+  <text x="810" y="782" class="copy">Sustainable capacity · body signals → P9 → action and result → P0</text>
+</svg>

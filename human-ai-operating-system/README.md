@@ -1,110 +1,110 @@
 # MelodieOS
 
-## How I manage 12 ongoing projects without losing the thread
+## A dynamic operating system for managing complex reality
 
-MelodieOS is the private working system I built to manage a career transition, growth work, AI learning, relationships, health, finances and long-term research as one connected portfolio of projects.
+**MelodieOS is the system I built to turn recurring problems into projects, rules, experiments and measurable change—with AI as a replaceable execution layer.**
 
-It did not start as a software idea. It started because ordinary tools were not solving an ordinary management problem: every chat helped with one task, but the next chat started from zero; courses and clips accumulated, but the useful ideas did not reliably change tomorrow's action; and twelve important areas of life were competing for the same limited time and energy.
+| 12 connected project domains | One continuous operating context | Measurable change |
+|---|---|---|
+| Direction, intelligence, execution, capability and capacity | Different agents continue from the same project state; I retain the goals, facts and final judgment | Current evidence includes a 5 kg health change and a queryable asset covering 197 accounts / 11,100 posts |
 
-The problem was not where to store more notes. It was how to turn a real problem into a project, turn outside knowledge into a decision, and keep that decision alive long enough to produce a result.
+## 1. Why I built it
 
-### MelodieOS today
+Each project was created after a recurring problem could no longer be managed through memory or isolated AI conversations.
 
-|  | Current scale |
-|---|---:|
-| Managed projects | **12 (P0–P11)** |
-| Private Markdown files | **7,470** |
-| Courses processed into reusable knowledge | **45 courses / 3,391 lessons** |
-| Real health-management result | **6 kg lost / body fat down 4 percentage points / still progressing** |
+- A new AI agent meant explaining the same context again.
+- Courses, clips and market information accumulated without changing action.
+- Career, growth, relationships, language, health and finances competed for the same attention.
+- An agent could finish a task while missing the long-term goal or a real-life constraint.
 
-*File counts include active working documents, source material and archives as of July 20, 2026. The numbers are public; the underlying private material is not.*
+I gave each recurring problem an accountable project, then let **P0 · Direction & Portfolio Control** choose the operating route for the current goal. The route changes with the goal or evidence.
 
-![MelodieOS growth flywheel and 12-project map](./melodieos-growth-flywheel.svg)
+## 2. The P0–P11 system map
 
-## Why each project exists
+![MelodieOS system map with five management layers](./melodieos-system-map.svg)
 
-Each project began with a problem I was actually experiencing. The system grew by solving those problems one by one.
+| Layer and project | Recurring problem | System response and current role |
+|---|---|---|
+| **Control · P0 Direction & Portfolio Control** | Twelve areas were competing for attention. | Selects the current operating route, caps visible daily actions and reallocates resources after feedback. |
+| **Control · P10 Resource & Financial Constraints** | Career and learning plans could ignore real runway and risk. | Keeps options, concentration risk and resource boundaries inside planning without exposing private amounts. |
+| **Intelligence · P1 Knowledge & Concept Intelligence** | Unfamiliar concepts repeatedly blocked judgment. | Maintains one plain-language understanding that can be called by the projects that need it. |
+| **Intelligence · P5 Market Signal Intelligence** | News, KOLs and market noise did not automatically produce action. | A signal must state what judgment changed, what action follows and what would disprove it. |
+| **Intelligence · P8 Company & Industry Intelligence** | Company descriptions could not explain industry position or organizational behavior. | Connects history, technology, organizations and business models to improve live judgment. |
+| **Execution · P2 Career Market Intelligence** | Job applications, market demand and personal evidence were disconnected. | Turns repeated role requirements and recruiter feedback into priorities, applications and evidence gaps. |
+| **Execution · P4 Partner & Relationship Operations** | Relationship frameworks were growing faster than real relationships were moving. | Defines completion as a real conversation, outreach or next commitment—not another framework. |
+| **Execution · P6 Growth Experimentation** | Knowing a growth method did not prove I could make it work. | Converts signals and borrowed methods into scoped tests with a real audience, channel, action, metric and stop condition. |
+| **Execution · P7 Cross-language Communication** | Complex judgment did not always become clear interview, partner or English communication. | Converts internal thinking into language I can actually use with another person. |
+| **Capability · P3 AI Capability & Public Evidence** | Learning AI or building a tool did not make it credible to an employer. | Separates historical evidence, applied work and future experiments; only qualified proof becomes public. |
+| **Capability · P11 Management Learning** | Completed courses still had to be reread before they could help. | Treats 45 courses as learning modules called by a live problem rather than as a study schedule. |
+| **Capacity · P9 Sustainable Capacity** | Physical condition changed the execution capacity of every other project. | Uses baselines, constraints and feedback to adjust behavior and the portfolio's realistic workload. |
 
-| Project | The real problem that created it | What I built to manage it | MD files |
-|---|---|---|---:|
-| **P0 · North Star Dashboard** | Twelve projects created too many competing priorities. | A daily cockpit that reduces the whole system to no more than three actions, visible commitments and current project status. | 274 |
-| **P1 · Knowledge Cards** | New AI, crypto, finance and business terms repeatedly blocked understanding. | A concept dictionary: one main explanation per concept, written in plain language and connected to where it is used. | 122 |
-| **P2 · Career Development** | After leaving OKX, my first applications were not opening the AI-growth conversations I wanted; my positioning and proof needed to become clearer. | A job-market radar and application pipeline built around a clear Global Growth position, target roles and evidence. | 560 |
-| **P3 · AI Learning** | Learning AI and building tools did not automatically make the capability visible or credible to employers. | A public-proof gate: only work with a real problem, visible output, honest result and verification path becomes a portfolio case. | 405 |
-| **P4 · BD & Relationships** | I had accumulated relationship frameworks, but more notes were not making real relationships move. | A relationship operating desk that turns a live situation into one next conversation, one action and one review—not another course summary. | 205 |
-| **P5 · Signal Intelligence** | A large KOL and market archive could still become information collection without a decision. | An intelligence process that must state the signal, what judgment changed, what action follows and what would prove the judgment wrong. | 227 |
-| **P6 · Growth Lab** | I had growth experience and methods, but needed a market I controlled where new ideas could be tested with real users and numbers. | A live experiment lab with a user, channel, offer, action, metric and review date. Unrun ideas do not count as results. | 90 |
-| **P7 · Chinese & English Expression** | My thinking often contained more than I could compress into a clear interview answer, story or English monologue. | An expression workshop that turns raw thoughts into language I can actually say aloud; it is a production line, not a study schedule. | 134 |
-| **P8 · Baize Map** | After leaving OKX, I wanted a better way to understand why capable people and organizations can produce very different outcomes. | A connected map of history, power, companies and technology that helps me recognize industry structure, organizational stage and product logic. | 1,336 |
-| **P9 · Health Management** | Energy, sleep, weight and emotional state were affecting every other project. | A feedback system built from a baseline, daily inputs, practical guardrails and weekly adjustment. It has helped me lose 6 kg and reduce my body-fat rate by 4 percentage points, with the project still progressing. | 13 |
-| **P10 · Financial Management** | Career-transition choices depended on knowing how much time and risk I could responsibly carry. | A deliberately small resource dashboard answering three questions: runway, concentration risk and whether long-term study funds remain protected. | 5 |
-| **P11 · Mini MBA** | Finishing courses created a large archive, but knowledge that had to be reread was not available when a real problem appeared. | A business-knowledge API: 45 courses and 3,391 lessons were processed, checked and routed into P1–P10 by the question they can help answer. | 4,099 |
+Some projects control, some supply intelligence, some execute and some define capacity. Their value lies in the combination chosen for the current result.
 
-## The growth flywheel
+## 3. How the flywheel works
 
-MelodieOS grows through the same loop every time:
+![MelodieOS dynamic project routing and feedback flywheel](./melodieos-dynamic-flywheel.svg)
 
-1. **A real problem appears.** Not “I want a better knowledge base,” but “my applications are not opening the right conversations,” “market information is not changing decisions,” or “my health plan is not surviving daily life.”
-2. **The problem gets an owner.** It enters the project responsible for solving it. If no project owns it, I decide whether it is important enough to create one.
-3. **I look for outside experience.** Courses, books, clips, job descriptions, market data, GitHub projects and conversations are possible inputs—not automatic truth.
-4. **The source is preserved, then processed.** I keep the original for traceability. The useful part is rewritten in plain language, checked against other sources and connected to the relevant project.
-5. **Knowledge must change something.** It must improve a decision, message, experiment, routine or next action. Otherwise it remains reference material rather than becoming a system rule.
-6. **The action runs in the real world.** A job is submitted, a relationship is contacted, a growth test is published, an interview answer is spoken, or a health routine is followed.
-7. **Results and failures update the system.** What worked, what failed and what changed are recorded. Instructions, dashboards and acceptance standards are corrected so the next attempt starts from a better place.
-8. **Safe evidence can become public.** Only after real use does P3 decide whether the work can become a public case. Private context stays private; the result and method are disclosed only when they can be explained safely and honestly.
+P0 is the control tower, not a permanent pipeline. It chooses a route around the objective. The current career-and-evidence route is:
 
-## How the projects strengthen one another
+> **P5/P8 read the market → P2 identifies what the market is buying → P6 tests it on a real audience or channel → P3 decides whether the evidence is ready → P7 makes it usable in a resume or interview → market feedback returns to P0.**
 
-The projects are not twelve separate folders. They pass work to one another.
+A growth route can run from P5/P8 through P6 and P4 to partners; a health route can run from body signals through P9 back to P0. The system does not force every problem through one sequence.
 
-- **P2 → P6 → P3:** repeated requirements in target jobs become a real growth experiment; only evidence from the live experiment can become public portfolio proof.
-- **P11 → P1–P10:** course material is not left in a course archive; useful ideas are routed to the project where a future decision will need them.
-- **P5 → P2 / P6 / P8:** a market signal must change a job choice, a growth action or a long-term industry judgment—or it is only news.
-- **P8 → P2 / P4 / P7:** historical and company research becomes interview judgment, relationship strategy and language that can be spoken aloud.
-- **P9 → every project:** energy is treated as operating capacity. The plan changes when the capacity changes.
-- **P0 → P1–P11:** the dashboard shows what matters now; each project keeps its own history and method, so the dashboard stays usable.
+**P6 is the execution and experimentation engine.** A qualified test needs a hypothesis, real audience or channel, minimum action, measurement rule and stop condition. Its result determines whether the method becomes an applied output, continues or is rejected.
 
-## A concrete result: P9 Health Management
+External expertise enters as a **learning module** only when a live project has a bottleneck. It becomes capability after changing a decision or producing an **applied output**: a tool, experiment, judgment, message or public proof. Completion alone is not evidence.
 
-“Lose weight and feel better” is a wish. P9 turned it into a managed project:
+AI retrieves, compares, implements and handles repetition. I own the objective, causality, priority, privacy, acceptance standard and final decision. Agents can change; accountability does not.
 
-- established a real baseline instead of relying on memory;
-- separated long-term health thresholds from a practical daily minimum;
-- connected meals, protein, movement, sleep and recovery to a repeatable daily rhythm;
-- recorded actual data and looked at trends rather than reacting to one measurement;
-- changed the plan when evidence or real-life capacity changed;
-- absorbed relevant course material only when it improved the current protocol.
+## 4. What changed in reality
 
-The result so far is **6 kg lost and a 4-percentage-point reduction in body-fat rate**, with the project still progressing. The important point is not that Markdown caused weight loss. It is that I turned a personal goal into a project with clear inputs, constraints, feedback and adjustment—and kept managing it until the real-world result changed.
+### Sustainable capacity
 
-## Why this is not another Obsidian knowledge vault
+P9 converted “lose weight and feel better” into a baseline, daily constraints and weekly feedback. From March 21 to July 20, 2026, the recorded change is **5 kg lost and body-fat rate down 3.6 percentage points**, with the project still progressing. A vague intention became a maintained routine and measured result.
 
-Many knowledge bases are designed to help people save and retrieve information. MelodieOS is designed to help me **manage work and change outcomes**.
+### Market intelligence became usable
 
-- **A real problem comes first.** I do not create notes simply because a topic is interesting.
-- **Every project has a job.** Its dashboard says where the project is now; its operating instructions say how work should be handled.
-- **Sources and finished work remain connected.** I can move from a conclusion back to its evidence, and from the source forward to what it changed.
-- **Knowledge crosses disciplines.** History can improve company judgment; business courses can improve a relationship action; job-market signals can create a growth experiment.
-- **Unused structure is removed.** More folders are not progress. If a workflow is not being used, I simplify or retire it.
-- **AI agents can change without resetting the work.** Claude, Codex or another capable agent can read the same project state, rules and evidence boundaries. I retain the goals, priorities, judgment and final review.
+The KOL workflow turned **197 accounts and 11,100 posts** into searchable evidence, a market judgment and a partner brief. Tools handle scale; the recommendation and stop conditions remain human decisions. [Inspect the workflow](../01-kol-growth-intelligence/) and [sanitized input → output](../03-case-studies/kol-growth-intelligence-output.md).
 
-## What this shows about how I work
+### Public evidence gained an honest gate
 
-MelodieOS is evidence of personal management and project management, not a claim that I built a new database technology.
+GitHub is a selective public-evidence outlet of MelodieOS, not a gallery in which every item has the same origin:
 
-It shows that I can:
+- **Partner Acquisition** and **Campaign Operations** are historical OKX results, organized by the current system.
+- **KOL Partner Intelligence** is an existing work asset and tool, sanitized and accepted by P3 for public inspection.
+- **Growth playbooks** marked `Next experiment` are designs. Only a real run can change that label.
 
-- turn an ambiguous problem into a managed project;
-- run a portfolio of competing priorities without losing the long-term goal;
-- absorb large amounts of outside knowledge without treating all of it as equally useful;
-- connect insights across growth, business, history, relationships, language and health;
-- define what counts as evidence, reject weak work and revise the process after failure;
-- use AI to expand execution capacity while keeping human judgment and responsibility.
+### The system also removes work
 
-The private system itself is not a public product. The transferable capability is the way I diagnose, structure, connect and manage complex work until it produces a decision or a result.
+- P4 had 11 course sets and 1,339 lines of playbook but only one real use in 21 days. The rule changed: stop adding frameworks; move one relationship.
+- P8 expanded for 23 days without a real analysis. A live case became the new priority and corrected the system's own stale verification status.
+- P6 had several parallel growth directions. They were reduced to one controlled experiment, with early attempts kept manual until reality justifies automation.
 
-## Privacy boundary
+These corrections show the ability to pause, simplify, reject and move resources when evidence does not justify the structure.
 
-This page publishes project-level names, aggregate counts, operating logic and results I have explicitly chosen to disclose. It does **not** publish any private Markdown content, screenshots, personal names, exact financial data, detailed health records, employer-confidential material, prompts, memories, logs or credentials.
+## 5. Why this is not another knowledge vault
+
+| A typical knowledge vault | MelodieOS |
+|---|---|
+| Saves what I read | Records what changed a judgment, action or rule |
+| Organizes mainly by topic | Gives recurring real-world problems an accountable project |
+| Depends on me remembering to search | Lets an agent retrieve from the current project's rules and evidence |
+| Treats more content as progress | Keeps learning as input; measured action and feedback are the test |
+| Ends with knowledge | Ends with a decision, experiment, result and updated priority |
+| Uses AI to generate content | Uses AI for execution while I retain causality, priority and acceptance |
+
+MelodieOS contains **7,470 private Markdown files inside P0–P11 as of July 20, 2026**: active work, course materials, source archives and system records—not 7,470 original essays. Scale shows history; it does not substitute for outcomes.
+
+## 6. From a personal operating system to a Growth OS
+
+The transferable skill is recognizing a recurring problem, assigning ownership, choosing the right project combination, running a measured action and changing the next allocation from feedback.
+
+Inside a team, the same logic becomes a Growth OS:
+
+> **Business goal → choose the operating route → assign intelligence, execution and capability roles → run measured tests → preserve evidence → reallocate resources from feedback.**
+
+That is how I approach partner growth: find opportunities, form a judgment, test the smallest useful action, define when to stop and improve the next decision.
+
+The content remains private. The operating architecture, decision rules, evidence standards and selected outcomes are public. Raw Markdown, personal records, paid-course content, employer materials, prompts, credentials and source archives are not.
 
 [Return to the AI × Growth portfolio](../README.md)
