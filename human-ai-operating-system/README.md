@@ -4,9 +4,9 @@
 
 **MelodieOS is the system I built to turn recurring problems into projects, rules, experiments and measurable change—with AI as a replaceable execution layer.**
 
-| 12 connected project domains | One portable operating context | Measurable change |
+| 12 connected project domains | One portable operating context | Evidence in use |
 |---|---|---|
-| Direction, intelligence, execution, capability and capacity | Different agents continue from the same project state; I retain the goals, facts and final judgment | Current evidence includes a 5 kg reduction in body weight, a 3.6-percentage-point decrease in body-fat rate and a queryable asset covering 197 accounts / 11,100 posts |
+| Direction, intelligence, execution, capability and capacity | Different agents continue from the same project state; I retain the goals, facts and final judgment | 197 accounts and 11,100 posts turned into searchable evidence, a market judgment and a partner decision brief. |
 
 ## 1. Why I built it
 
