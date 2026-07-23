@@ -2,7 +2,7 @@
 
 ## One-line summary
 
-I replaced repeated KOL timeline reading with a research tool that makes **197 accounts and 11,100 posts** searchable. I still make the final partnership decision.
+I replaced repeated KOL timeline reading with a research tool that makes **~200 public accounts and 11,100 posts** searchable. I still make the final partnership decision.
 
 ## 1. The real growth job
 
@@ -27,7 +27,7 @@ Manual reading worked for a handful of accounts. It did not work across hundreds
 
 ### Collection
 
-The Chrome extension archives monthly X/Twitter timelines as Markdown. It was iterated under real operating pressure, including rate limits, stalled pages and interrupted sessions. The private production archive contains **197 accounts and 11,100 posts**.
+The Chrome extension archives monthly X/Twitter timelines as Markdown. It was iterated under real operating pressure, including rate limits, stalled pages and interrupted sessions. The private production archive contains **about 200 public accounts and 11,100 posts**.
 
 ### Retrieval
 

@@ -8,7 +8,7 @@ I use AI when research or execution stops scaling. AI helps me find and process 
 
 **I turn recurring problems into projects, experiments and measurable change.**
 
-MelodieOS is a private operating system with 12 connected project domains. P0 selects the project route for the current goal; AI agents help research and execute; I retain the facts, priorities and final judgment. Current evidence includes a market-intelligence asset covering **197 accounts and 11,100 posts**, scoped growth experiments with explicit stop conditions, and a public evidence system that separates completed work from future tests.
+MelodieOS is a private operating system with 12 connected project domains. P0 selects the project route for the current goal; AI agents help research and execute; I retain the facts, priorities and final judgment. Current evidence includes a market-intelligence workflow built on **~200 public accounts and 11,100 posts**, scoped growth experiments with explicit stop conditions, and a public evidence system that separates completed work from future tests.
 
 [See how I dynamically route projects, evidence and feedback →](./human-ai-operating-system/)
 
@@ -28,7 +28,7 @@ Regional growth had plateaued inside the same crypto circles. I reframed the pro
 
 KOL research used to mean opening profiles one by one, reading timelines and trying to remember who looked promising. That worked for ten accounts, not hundreds.
 
-I built a Chrome extension and an MCP search tool that made **197 accounts and 11,100 posts** queryable. The workflow finds and compares relevant evidence; I make the final partnership decision.
+I built a Chrome extension and an MCP search tool that made **~200 public accounts and 11,100 posts** queryable. The workflow finds and compares relevant evidence; I make the final partnership decision.
 
 **Decision example:** **B — run one focused discovery call and pilot; do not scale yet.** The brief shows supporting evidence, counter-evidence, the offer, first outreach and stop conditions.
 

@@ -6,7 +6,7 @@
 
 | 12 connected project domains | One portable operating context | Evidence in use |
 |---|---|---|
-| Direction, intelligence, execution, capability and capacity | Different agents continue from the same project state; I retain the goals, facts and final judgment | 197 accounts and 11,100 posts turned into searchable evidence, a market judgment and a partner decision brief. |
+| Direction, intelligence, execution, capability and capacity | Different agents continue from the same project state; I retain the goals, facts and final judgment | ~200 public accounts and 11,100 posts turned into searchable evidence, a market judgment and a partner decision brief. |
 
 ## 1. Why I built it
 
@@ -64,7 +64,7 @@ P9 converted “lose weight and feel better” into a baseline, daily constraint
 
 ### Market intelligence became usable
 
-The KOL workflow turned **197 accounts and 11,100 posts** into searchable evidence, a market judgment and a partner brief. Tools handle scale; the recommendation and stop conditions remain human decisions. [Inspect the workflow](../01-kol-growth-intelligence/) and [sanitized input → output](../03-case-studies/kol-growth-intelligence-output.md).
+The KOL workflow turned **~200 public accounts and 11,100 posts** into searchable evidence, a market judgment and a partner brief. Tools handle scale; the recommendation and stop conditions remain human decisions. [Inspect the workflow](../01-kol-growth-intelligence/) and [sanitized input → output](../03-case-studies/kol-growth-intelligence-output.md).
 
 ### Public evidence gained an honest gate
 

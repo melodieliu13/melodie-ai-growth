@@ -7,7 +7,7 @@ A working growth-research workflow for deciding which accounts, narratives and p
 Manual timeline reading worked for ten accounts, not hundreds. This workflow makes source material retrievable without pretending that retrieval is the business decision.
 
 ```text
-197 accounts / 11,100 posts
+~200 public accounts / 11,100 posts
         ↓
 monthly source archive
         ↓
