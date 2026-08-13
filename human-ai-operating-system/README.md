@@ -66,6 +66,10 @@ P9 converted “lose weight and feel better” into a baseline, daily constraint
 
 The KOL workflow turned **~200 public accounts and 11,100 posts** into searchable evidence, a market judgment and a partner brief. Tools handle scale; the recommendation and stop conditions remain human decisions. [Inspect the workflow](../01-kol-growth-intelligence/) and [sanitized input → output](../03-case-studies/kol-growth-intelligence-output.md).
 
+### Agreement became a question, not an answer
+
+**Evidence status: Working prototype — one real run.** I turned a manual "ask several AI systems" habit into a three-round decision review: independent answers, adversarial reasoning checks and a final record that preserves dissent. In its first real run, all three systems pointed in a similar direction—but the review caught that they shared the same translated secondary source. I withheld factual confidence, changed the next step to source verification and kept the remaining risk decision with the accountable human. [Read the sanitized protocol and first run](./multi-model-decision-review.md).
+
 ### Public evidence gained an honest gate
 
 GitHub is a selective public-evidence outlet of MelodieOS, not a gallery in which every item has the same origin:
